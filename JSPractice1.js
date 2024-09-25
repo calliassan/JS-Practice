@@ -1120,3 +1120,10 @@
 // }
 
 // console.log(suffixSum[2] - suffixSum[5]);
+
+var str = "Crio.do";
+let str1 = "Ashish is learning from";
+console.log(str);
+
+var str = str1.concat(str);
+console.log(str);
