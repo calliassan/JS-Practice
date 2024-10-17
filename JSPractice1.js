@@ -1127,3 +1127,23 @@ console.log(str);
 
 var str = str1.concat(str);
 console.log(str);
+
+// ***********Prime or not***********
+
+// function checkForPrime(n) {
+//   if (n == 0 || n == 1) {
+//     return "not considered";
+//   } else {
+//     let res = "";
+//     for (let i = 2; i <= n - 1; i++) {
+//       if (n % i == 0) {
+//         res = "not a prime";
+//         break;
+//       } else {
+//         res = "is prime";
+//       }
+//     }
+//     return res;
+//   }
+// }
+// console.log(checkForPrime(9));
