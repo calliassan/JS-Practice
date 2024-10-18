@@ -623,3 +623,85 @@
 //   }
 // }
 // console.log(Robert("LRLRUD"));
+
+// 32.>>Natural sum
+
+// function naturalSum(n){
+//     if(n<1){
+//         return 0
+//     }
+//     return n+naturalSum(n-1)
+
+// }
+// console.log(naturalSum(4))
+
+// 33.>>Nth fibonacci number
+// 1.Iteration method
+
+// function fibonacci(n) {
+//   let p1 = 0;
+//   let p2 = 1;
+//   let fib;
+//   if (n <= 1) {
+//     return n;
+//   }
+//   for (let i = 2; i <= n; i++) {
+//     fib = p1 + p2;
+//     p1 = p2;
+//     p2 = fib;
+//   }
+//   return fib;
+// }
+// console.log(fibonacci(10));
+
+// 2.print fibonacci Numbers
+
+// function Fibonacci(n) {
+//   let n1 = 0,
+//     n2 = 1;
+//   let next;
+//   for (let i = 1; i <= n; i++) {
+//     console.log(n1);
+//     next = n1 + n2;
+//     n1 = n2;
+//     n2 = next;
+//   }
+// }
+// Fibonacci(7);
+
+// 3.>>Recurssion(find nth fibonacci number)
+
+// function fibonacci(n){
+//     if(n==0){
+//         return 0
+//     }
+//     if(n===1){
+//         return 1
+//     }
+//     return fibonacci(n-1)+ fibonacci(n-2)
+
+// }
+// console.log(fibonacci(6))
+
+// 34.>>Tribonacci number
+// function fibonacci(n) {
+//   if (n === 0) {
+//     return 0;
+//   }
+//   if (n === 1 || n === 2) {
+//     return 1;
+//   }
+
+//   return fibonacci(n - 1) + fibonacci(n - 2) + fibonacci(n - 3);
+// }
+// console.log(fibonacci(7));
+
+// 35.>>Factorial
+// function factorial(n){
+//     if(n<=1){
+//         return 1
+//     }
+//     return n * factorial(n-1)
+
+// }
+// console.log(factorial(4))
