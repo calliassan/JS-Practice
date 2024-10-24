@@ -10,6 +10,8 @@
 //   }
 // }
 
+const { set } = require("mongoose");
+
 // 2.// console.log(findQuadrant(-2, -4));
 
 // function naturalNumbers(N) {
@@ -220,9 +222,9 @@
 // console.log(palindrome("madam"));
 // console.log(palindrome("ashish"));
 
-// 18.>ReverseString
+// 18.>Reversearr
 
-// function reverseString(str) {
+// function reversearr(str) {
 //   let arr = str.split("");
 
 //   let left = 0,
@@ -238,10 +240,10 @@
 //   }
 //   return newarr.join("");
 // }
-// console.log(reverseString("abc"));
+// console.log(reversearr("abc"));
 
-// 19.>>Inline reverse String
-// function reverseString(str) {
+// 19.>>Inline reverse arr
+// function reversearr(str) {
 //   let arr = str.split("");
 
 //   let left = 0,
@@ -256,7 +258,7 @@
 //   }
 //   return arr.join("");
 // }
-// console.log(reverseString("abc"));
+// console.log(reversearr("abc"));
 
 // 20.Find minimum and maximum element in an array:
 // function minMax(N, arr) {
@@ -497,7 +499,7 @@
 // }
 // console.log(patternPrintingI(5));
 
-// 27.>>Reverse words in a string
+// 27.>>Reverse words in a arr
 
 // function reverseWords(sentense) {
 //   let arr = sentense.trim().split(" ");
@@ -512,8 +514,8 @@
 // }
 // console.log(reverseWords(" hello   Ashish Bhattarai "));
 
-// 28.>>>String compress
-// function compressString(str) {
+// 28.>>>arr compress
+// function compressarr(str) {
 //   let compressed = "";
 //   let count = 1;
 //   let left = str[0];
@@ -532,10 +534,10 @@
 //   compressed += left + count;
 //   return compressed.length<str.length?compressed:str;
 // }
-// console.log(compressString("aabacccccb"));
-// console.log(compressString("aabaccccc"));
+// console.log(compressarr("aabacccccb"));
+// console.log(compressarr("aabaccccc"));
 // tc: O(n);
-// sc: O(n); //because string is immutable and we are creating new every string like 1st a2, 2nd:a2b1 and so on.
+// sc: O(n); //because arr is immutable and we are creating new every arr like 1st a2, 2nd:a2b1 and so on.
 
 // 29.>>Reverse letters of words in a sentence with words
 // function reverseletters(word) {
@@ -705,3 +707,387 @@
 
 // }
 // console.log(factorial(4))
+
+// ***************MAP************************************
+
+// 35.Most Repeating word
+// function MostRepeat(arr) {
+//   let m = new Map();
+//   arr.sort();
+//   for (let i = 0; i < arr.length; i++) {
+//     if (!m.has(arr[i])) {
+//       m.set(arr[i], 1);
+//     } else {
+//       m.set(arr[i], m.get(arr[i]) + 1);
+//     }
+//   }
+//   let max = -1;
+//   let maxkey;
+//   for (let [key, value] of m) {
+//     if (max < value) {
+//       max = value;
+//       maxkey = key;
+//     }
+//   }
+//   return maxkey;
+// }
+// console.log(MostRepeat(["hello", "world", "crio", "crio"]));
+// console.log(MostRepeat(["hello", "hello", "world", "crio", "crio"]));
+
+// 36.>>Find single number
+
+// function findSingle(arr) {
+//   let m = new Map();
+//   for (let i = 0; i < arr.length; i++) {
+//     if (!m.has(arr[i])) {
+//       m.set(arr[i], 1);
+//     } else {
+//       m.set(arr[i], m.get(arr[i]) + 1);
+//     }
+//   }
+//   for (let [key, value] of m) {
+//     if (value === 1) {
+//       return key;
+//     }
+//   }
+// }
+// console.log(findSingle([2, 2, 3, 3, 1, 4, 4]));
+
+// ****using forEach********
+
+// function findSingle(arr) {
+//   let m = new Map();
+//   for (let i = 0; i < arr.length; i++) {
+//     if (!m.has(arr[i])) {
+//       m.set(arr[i], 1);
+//     } else {
+//       m.set(arr[i], m.get(arr[i]) + 1);
+//     }
+//   }
+//   let result;
+//   m.forEach((key, value) => {
+//     if (value === 1) {
+//       result = key;
+//     }
+//   });
+//   return result;
+// }
+// console.log(findSingle([2, 2, 3, 3, 1, 4, 4]));
+
+// 37.>>>Intersection of arrays
+// function Intersection(arr1, arr2) {
+//   let map = new Map();
+//   let arr = [];
+//   for (let i = 0; i < arr1.length; i++) {
+//     if (!map.has(arr1[i])) {
+//       map.set(arr1[i], 1);
+//     } else {
+//       map.set(arr1[i], map.get(arr1[i]) + 1);
+//     }
+//   }
+
+//   for (let i = 0; i < arr2.length; i++) {
+//     if (map.has(arr2[i])) {
+//       let count = map.get(arr2[i]);
+//       if (count > 0) {
+//         arr.push(arr2[i]);
+//         map.set(arr2[i], count - 1);
+//       }
+//     }
+
+//   }
+//   return arr;
+
+// }
+// console.log(Intersection([1, 2, 2, 3], [4, 2, 2]));
+
+// 38.>>>Most Frequent
+//You are given a arr which comprises lower case alphabets (a-z), upper case alphabets (A-Z), numbers, (0-9) and
+// special characters like !,-.; etc.
+
+// You are supposed to find out which character occurs the maximum number of times and the number of its occurrence, in the given arr. If two characters occur equal number of times, you have to output the character with the lower ASCII value.
+
+// For example, if your arr was: aaaaAAAA, your output would be: A 4, because A has lower ASCII value than a.
+// function mostFrequent(string) {
+//   let arr = string.split("").sort();
+//   let maxkey;
+//   let max = -1;
+//   let newmap = new Map();
+//   for (let i = 0; i < arr.length; i++) {
+//     if (!newmap.has(arr[i])) {
+//       newmap.set(arr[i], 1);
+//     } else {
+//       newmap.set(arr[i], newmap.get(arr[i]) + 1);
+//     }
+//   }
+//   for (let [key, value] of newmap) {
+//     if (value > max) {
+//       max = value;
+//       maxkey = key;
+//     }
+//   }
+//   let result = `${maxkey} ${max}`;
+
+//   return result;
+// }
+// console.log(mostFrequent("Statements are unique EEEE"));
+
+// 39.>>>Distinct Numbers
+// function DistinctNumbers(n, nums) {
+//   let s = new Set();
+//   for (let i = 0; i < n; i++) {
+//     s.add(nums[i]);
+//   }
+//   console.log(s);
+//   return s.size;
+// }
+// console.log(DistinctNumbers(5, [2, 3, 2, 2, 5]));
+
+// 40.>>All Anagrams
+//You are given a string str consisting of non-repeating lowercase English letters.
+// Additionally, you have an array arr of strings, each containing non-repeating characters.
+// Your task is to create a program that identifies and returns the strings from the arr that are
+// anagrams of the given string str.
+
+// The resulting array of strings should be in lexicographically sorted order.
+
+// function isAnagram(s1, s2) {
+//   if (s1.length !== s2.length) {
+//     return false;
+//   } else {
+//     s1 = s1.split("").sort().join("");
+//     s2 = s2.split("").sort().join("");
+//     if (s1 === s2) {
+//       return true;
+//     } else {
+//       return false;
+//     }
+//   }
+// }
+// console.log(isAnagram("abc", "bcd"));
+
+// function allAnagrams(str, arr) {
+//   let res = [];
+//   for (let i = 0; i < arr.length; i++) {
+//     if (isAnagram(str, arr[i])) {
+//       res.push(arr[i]);
+//     }
+//   }
+//   return res.sort()
+// }
+// console.log(allAnagrams("abc", ["bac", "cad", "acb"]));
+
+// 2nd way
+
+// function isAnagram(s1, s2) {
+//   if (s1.length !== s2.length) {
+//     return false;
+//   } else {
+//     let set1 = new Set(s1);
+//     let set2 = new Set(s2);
+//     for (let key of set1) {
+//       if (!set2.has(key)) {
+//         return false;
+//       }
+//     }
+//   }
+//   return true
+// }
+// console.log(isAnagram("abc", "bca"));
+
+// function allAnagrams(str, arr) {
+//   let res = [];
+//   for (let i = 0; i < arr.length; i++) {
+//     if (isAnagram(str, arr[i]) === true) {
+//       res.push(arr[i]);
+//     }
+//   }
+//   return res.sort();
+// }
+// console.log(allAnagrams("abc", ["bac", "cad", "acb"]));
+
+// 41.>>>Find Unique words
+// function uniqueWords(arr) {
+//   let newarr = [];
+//   for (let i = 0; i < arr.length; i++) {
+//     let isunique = true;
+
+//     for (let j = 0; j < newarr.length; j++) {
+//       if (arr[i] === newarr[j]) {
+//         isunique = false;
+//         break;
+//       }
+//     }
+//     if (isunique) {
+//       newarr.push(arr[i]);
+//     }
+//   }
+
+//   return newarr;
+// }
+// console.log(uniqueWords(["java", "is", "is", "Great", "for", "for"]));
+
+// tc:0(N2)
+// sc:0(N)
+
+// 2nd method:Using Set
+
+// function uniqueWords(arr) {
+//   let s = new Set(arr);
+//   return s.size;
+// }
+// console.log(uniqueWords(["java", "is", "is", "Great", "for", "for"]));
+
+// 42.>>Union of two arrays
+// function Union(arr1, arr2) {
+//   let arr = [];
+//   let s = new Set(arr1);
+//   for (let i = 0; i < arr2.length; i++) {
+//     s.add[arr2[i]];
+//   }
+//   for (let key of s) {
+//     arr.push(key);
+//   }
+//   return arr.sort((a, b) => a - b);
+// }
+// console.log(Union([1, 2, 3, 4, 5,10,6,9], [1, 2, 3]));
+
+// 43.>>>Prime Numbers
+
+// function primeNumbers(N) {
+//   if (N < 2) {
+//     return false;
+//   }
+//   for (let i = 2; i <= Math.floor(Math.sqrt(N)); i++) {
+//     if (N % i === 0) {
+//       return false;
+//     }
+//   }
+//   return true;
+// }
+// console.log(primeNumbers(9));
+// console.log(primeNumbers(5));
+// console.log(primeNumbers(7));
+// console.log(primeNumbers(10));
+// console.log(primeNumbers(28));
+//here we have taken till square root of N because if we do till squareroot of the number also, it is same.
+
+// 44.>>HCF/GCD
+//Euclidean method
+// function GCD(n1, n2) {
+//   if (n2 === 0) {
+//     return n1;
+//   }
+//   return GCD(n2, n1 % n2);
+// }
+// console.log(GCD(24, 36));
+
+// 45.>>GCD of array of numbers
+// function gcd(n1, n2) {
+//   if (n2 === 0) {
+//     return n1;
+//   }
+//   return gcd(n2, n1 % n2);
+// }
+// console.log(gcd(24, 36));
+
+// function gdcArray(arr) {
+//   let res = gcd(arr[0], arr[1]);
+//   for (let i = 2; i < arr.length; i++) {
+//     res = gcd(res, arr[i]);
+//   }
+//   return res;
+// }
+// console.log(gdcArray([4, 6, 8, 16]));
+
+// 46.>>Reverse a number
+// function reverseNumber(N) {
+//   let rev = 0;
+//   while(N>0){
+//     rev = rev * 10 + (N % 10);
+//     N=Math.floor(N/10)
+//   }
+
+//   return rev;
+// }
+// console.log(reverseNumber(715));
+
+// 47.>>Find pair with given sum in sorted array
+// Given a sorted array of integers and a target, find if there’s
+// a pair of elements that add up to the target. Return true if such a pair can be found, and false otherwise.
+// function findPair(arr, target) {
+//   let copyarr = [...arr];
+//   let sorted = arr.sort((a, b) => a - b);
+//   let left = 0,
+//     right = arr.length - 1;
+//   while (left < right) {
+//     let sum = sorted[left] + sorted[right];
+//     if (sum === target) {
+//       break;
+//     } else if (sum > target) {
+//       right--;
+//     } else {
+//       left++;
+//     }
+//   }
+//   let indx1 = copyarr.indexOf(sorted[left]);
+//   let startpos = 0;
+//   if (sorted[left] == sorted[right]) {
+//     startpos = indx1 + 1;
+//   }
+//   let indx2 = copyarr.indexOf(sorted[right], startpos);
+//   return [Math.min(indx1, indx2), Math.max(indx1, indx2)];
+// }
+// console.log(findPair([2, 5, 9, 6, 3], 12));
+
+//sorter[left]==sorted[right] is used to tackle the duplicate number because if it is say [2,5,9,6,3,2] (2 is at left
+// and also t right so when we do index of we will get 0 as index which is not correct so we search from 0+1 )
+//this all is done because of unsorted array
+// TC:(nlogn)
+// SC: O(n)
+
+// 48.>>>Merge Two sorted Arrays;
+// function mergeSorted(n, arr1, m, arr2) {
+//   let left = 0,
+//     right = 0;
+//   let c = [];
+//   while (left < n && right < m) {
+//     if (arr1[left] <= arr2[right]) {
+//       c.push(arr1[left]);
+//       left++;
+//     } else {
+//       c.push(arr2[right]);
+//       right++;
+//     }
+//   }
+//   while (left < n) {
+//     c.push(arr1[left]);
+//     left++;
+//   }
+//   while (right < m) {
+//     c.push(arr2[right]);
+//     right++;
+//   }
+//   return c;
+// }
+// console.log(mergeSorted(4,[1, 2, 3, 4], 3,[2, 5, 6]));
+
+// 49.>>>Remove Duplicates such that element occurs only tice max
+// Given a sorted array, remove the duplicates in-place, such that each element in the array appears at most twice,
+// and return the new length.
+
+// Do not allocate extra space for another array, you must do this by modifying the input array in-place with O(1)
+// extra memory.
+
+// function removeDuplicatesFromSortedArrayII(n, arr) {
+//   let j = 0;
+//   for (let i = 0; i < n; i++) {
+//     if (j < 2 || arr[i] > arr[j - 2]) {
+//       arr[j] = arr[i];
+//       j++;
+//     }
+//   }
+//   console.log(arr);
+//   return j;
+// }
+// console.log(removeDuplicatesFromSortedArrayII(9, [2, 2, 2, 3, 4, 4, 4, 5, 5]));
