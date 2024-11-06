@@ -1012,7 +1012,7 @@ const { set } = require("mongoose");
 // }
 // console.log(reverseNumber(715));
 
-// 47.>>Find pair with given sum in sorted array
+// 47.>>Find pair with given sum in unsorted array
 // Given a sorted array of integers and a target, find if there’s
 // a pair of elements that add up to the target. Return true if such a pair can be found, and false otherwise.
 // function findPair(arr, target) {
@@ -1039,6 +1039,32 @@ const { set } = require("mongoose");
 //   return [Math.min(indx1, indx2), Math.max(indx1, indx2)];
 // }
 // console.log(findPair([2, 5, 9, 6, 3], 12));
+
+//Another Approach
+// function twoSum(nums, target) {
+//   let arr_pair = [];
+//   for (let i = 0; i < nums.length; i++) {
+//     arr_pair.push([nums[i], i]);
+//   }
+//   console.log(arr_pair);
+//   arr_pair.sort((a, b) => a[0] - b[0]);
+//   console.log(arr_pair);
+
+//   let left = 0;
+//   let right = nums.length - 1;
+//   while (left < right) {
+//     let sum = arr_pair[left][0] + arr_pair[right][0];
+//     if (sum > target) {
+//       right--;
+//     } else if (sum < target) {
+//       left++;
+//     } else {
+//       return [arr_pair[left][1], arr_pair[right][1]].sort((a, b) => a - b);
+//     }
+//   }
+//   return [];
+// }
+// console.log(twoSum([1, 2, 4, 6, 3, 5], 9));
 
 //sorter[left]==sorted[right] is used to tackle the duplicate number because if it is say [2,5,9,6,3,2] (2 is at left
 // and also t right so when we do index of we will get 0 as index which is not correct so we search from 0+1 )
@@ -1091,3 +1117,554 @@ const { set } = require("mongoose");
 //   return j;
 // }
 // console.log(removeDuplicatesFromSortedArrayII(9, [2, 2, 2, 3, 4, 4, 4, 5, 5]));
+
+// 50.>>>Triplet with maximum sum
+//Given an array nums, you need to find the maximum sum of triplet (nums[i] + nums[j] + nums[k]) such that 0 <= i < j < k and nums[i] < nums[j] < nums[k].
+// If no such triplet exists print 0.
+
+// function findithitem(arr, j, n) {
+//   let ans = 0;
+//   for (let i = 0; i < j; i++) {
+//     if (arr[i] < arr[j]) {
+//       ans = Math.max(ans, arr[i]);
+//     }
+//   }
+//   return ans;
+// }
+// console.log(findithitem([3, 7, 4, 2, 5, 7, 5], 1, 7));
+
+// function findkthitem(arr, j, n) {
+//   let ans = 0;
+//   for (let k = j + 1; k <= n - 1; k++) {
+//     if (arr[k] > arr[j]) {
+//       ans = Math.max(ans, arr[k]);
+//     }
+//   }
+//   return ans;
+// }
+// console.log(findkthitem([3, 7, 4, 2, 5, 7, 5], 3, 7));
+
+// function findTriplet(arr, n) {
+//   let maxsum = 0;
+//   for (let j = 1; j < n - 1; j++) {
+//     let ithitem = findithitem(arr, j, n);
+//     let kthitem = findkthitem(arr, j, n);
+//     if (arr[j] + ithitem + kthitem > maxsum && ithitem > 0 && kthitem > 0) {
+//       maxsum = Math.max(maxsum, arr[j] + ithitem + kthitem);
+//     }
+//     console.log(ithitem, arr[j], kthitem);
+//   }
+
+//   return maxsum;
+// }
+// console.log(findTriplet([3, 7, 4, 2, 5, 7, 5], 7));
+
+// 51.>>>Find the container that holds the most water
+// function mostwater(height) {
+//   let ans = 0;
+//   let left = 0;
+//   let right = height.length - 1;
+
+//   while (left < right) {
+//     let area = Math.min(height[left], height[right]) * (right - left);
+
+//     ans = Math.max(ans, area);
+//     if (height[left] < height[right]) {
+//       left++;
+//     } else {
+//       right--;
+//     }
+//   }
+//   return ans;
+// }
+// console.log(mostwater([1, 8, 6, 2, 5, 4, 8, 3, 7]));
+// console.log(mostwater([1, 8, 6, 2, 5, 4, 8, 9, 7]));
+
+//we can also use area as under to arrive at answer
+// function maxArea(height) {
+//   let left = 0;
+//   let right = height.length - 1;
+//   let max = 0;
+
+//   while (left < right) {
+//     let gap = right - left;
+//     let h = Math.min(height[left], height[right]);
+//     let water = gap * h;
+
+//     if (water > max) {
+//       max = water;
+//       left++;
+//     } else {
+//       right--;
+//     }
+//   }
+
+//   return max;
+// }
+// console.log(maxArea([1, 8, 6, 2, 5, 4, 8, 3, 7, 10]));
+
+// 52.>>>Find minimum number of meeeting rooms required
+// function minRooms(meetings) {
+//   const list = [];
+//   for (let meeting of meetings) {
+//     list.push({ timestamp: meeting[0], RoomChange: +1 });
+//     list.push({ timestamp: meeting[1], RoomChange: -1 });
+//   }
+//   list.sort((a, b) => a.timestamp - b.timestamp);
+//   console.log(list);
+//   let minrooms = 0;
+//   let meetinginprogresss = 0;
+//   for (let p of list) {
+//     meetinginprogresss += p.RoomChange;
+//     minrooms = Math.max(minrooms, meetinginprogresss);
+//   }
+//   return minrooms;
+// }
+// console.log(
+//   minRooms([
+//     [0, 20],
+//     [5, 10],
+//     [10, 15],
+//   ])
+// );
+
+// 2nd way
+// function meetingRooms(meetings) {
+//   let newarr1 = [];
+//   let newarr2 = [];
+//   for (let i = 0; i < meetings.length; i++) {
+//     newarr1.push(meetings[i][0]);
+//     newarr2.push(meetings[i][1]);
+
+//   }
+//   newarr1.sort((a, b) => a - b);
+//   newarr2.sort((a, b) => a - b);
+
+//   let rooms = 0;
+//   let end = 0;
+//   let count = 0;
+//   for (let i = 0; i < meetings.length; i++) {
+//     if (newarr1[i] < newarr2[end]) {
+
+//       rooms++;
+//       count += 1;
+//     } else {
+//       end++;
+//     }
+//   }
+//   return rooms;
+// }
+
+// 53.>>Merge Overlapping intervals
+// function mergeOverlappingIntervals(intervals) {
+//   let arr = [];
+//   let arr1 = [];
+//   let arr2 = [];
+//   for (let i = 0; i < intervals.length; i++) {
+//     arr1.push(intervals[i][0]);
+//     arr2.push(intervals[i][1]);
+//   }
+//   arr1.sort((a, b) => {
+//     a - b;
+//   });
+//   arr2.sort((a, b) => {
+//     a - b;
+//   });
+//   console.log(arr1);
+//   console.log(arr2);
+//   let startA = arr1[0];
+//   let endA = arr2[0];
+//   for (let i = 1; i <= intervals.length; i++) {
+//     let startB = arr1[i];
+//     let endB = arr2[i];
+//     if (startB <= endA) {
+//       endA = Math.max(endA, endB);
+//     } else {
+//       arr.push([startA, endA]);
+//       // startA = startB;
+//       // endA = endB;
+//     }
+//   }
+//   return arr;
+// }
+// console.log(
+//   mergeOverlappingIntervals([
+//     [1, 3],
+//     [2, 6],
+//     [8, 10],
+//     [15, 18],
+//   ])
+// );
+
+// 54.>>Find the equal partition index
+// function equalPartition(arr, n) {
+//   const pre = [];
+//   let sum = 0;
+//   for (let i = 0; i < n; i++) {
+//     sum += arr[i];
+//     pre.push(sum);
+//   }
+//   for (let i = 1; i < n - 1; i++) {
+//     const leftsum = pre[i - 1];
+//     const rightsum = pre[n - 1] - pre[i];
+//     if (leftsum === rightsum) {
+//       return i;
+//     }
+//   }
+//   return -1;
+// }
+// console.log(equalPartition([1, 4, 2, 5], 4));
+
+// 55.>>Find maximum sum contageous {very IMp}
+// function maxSubarraySum(arr) {
+//   let res = 0;
+
+//   for (let i = 0; i < arr.length; i++) {
+//     let sum = 0;
+//     for (let j = i; j < arr.length; j++) {
+//       sum += arr[j];
+//       res = Math.max(res, sum);
+//     }
+//   }
+//   return res;
+// }
+
+// const arr = [2, 3, -8, 7, -1, 2, 3];
+// console.log(maxSubarraySum(arr));
+
+// above using ***************kadane's algorithm****************
+// function maxSum(arr) {
+//   let res = Number.MIN_SAFE_INTEGER;
+//   let sum = 0;
+//   //we use minsafe because -infinity may gives incarrute value in js
+//   further, with the-ve number initialization, we can find the non empty array which would not be possible with 0;
+//   for (let i = 0; i < arr.length; i++) {
+//     sum += arr[i];
+//     if (sum > res) {
+//       res = sum;
+//     }
+//     if (sum < 0) {
+//       sum = 0;
+//     }
+//   }
+//   return res;
+// }
+// console.log(maxSum([-2, -3, 4, -1, -2, 1, 5, -3]));
+
+// 56.>>>Finding all subarrays of an array
+// function findAllsubarrays(arr) {
+//   let res = [];
+//   for (let i = 0; i < arr.length; i++) {
+//     let arrays = [];
+//     for (let j = i; j < arr.length; j++) {
+//       arrays.push(arr.slice(i, j + 1));
+//     }
+//     res.push(arrays);
+//   }
+//   return res;
+// }
+// console.log(findAllsubarrays([1, 2, 3, 4, 5]));
+
+// 57.>>Find if there exists a subarray of sum 0
+// function subArray(arr) {
+//   let sum = 0;
+//   let newset = new Set();
+//   for (let i = 0; i < arr.length; i++) {
+//     sum += arr[i];
+//     if(sum===0 ||newset.has(sum)){
+//       return true
+//     }
+//     else{
+//       newset.add(sum)
+//     }
+//   }
+//   return false;
+// }
+// console.log(subArray([4, 2, -2, 5]));
+
+// 58.>>Find longest subarray with sum 0
+// Given an integer array, find the largest subarray with sum 0 . If there is more than one subarray with the largest length,
+// return the subarray with the lowest starting index.
+
+// If there is no such sub-array print -1.
+
+// function longestSubarray(arr) {
+//   let leftans = -1,
+//     rightans = -2;
+
+//   let sum = 0;
+//   let newmap = new Map();
+//   newmap.set(0, -1); //to handle edge case i.e if sum itself becomes zero
+//   for (let right = 0; right < arr.length; right++) {
+//     sum += arr[right];
+//     if (newmap.has(sum)) {
+//       let left = newmap.get(sum) + 1;
+//       if (right - left + 1 > rightans - leftans + 1) {
+//         rightans = right;
+//         leftans = left;
+//       }
+//     } else {
+//       newmap.set(sum, right);
+//     }
+//   }
+// }
+// console.log(longestSubarray(2, 3, 1, -4, 0, 6));
+
+// 59.>>
+// Maximum sum possible out of all subarrays of size k
+// Given an array of integers and a number k, find the maximum sum of a subarray of size k.
+// Input format
+// Sample Input 1
+// 4 2
+// 100 200 300 400
+// Sample Output 1
+// 700
+
+// function maximumSubarraySumSizeK(N, A, K) {
+//   let left = 0,
+//     right = K - 1,
+//     maxsum = -Infinity;
+//   let sum = 0;
+//   for (let i = left; i <= right; i++) {
+//     sum = sum + A[i];
+//   }
+//   maxsum = Math.max(sum, maxsum);
+//   left++;
+//   right++;
+
+//   while (right < N ) {
+//     sum = sum - A[left - 1] + A[right];
+//     maxsum = Math.max(maxsum, sum);
+//     left++;
+//     right++;
+//   }
+//   return maxsum;
+// }
+// console.log(maximumSubarraySumSizeK(4, [100, 200, 300, 400], 2));
+
+// 60.>>>Find the longest substring with the at most k distinct characters
+// function kDistinctcharacters(s, k) {
+//   let left = 0,
+//     right = 0;
+//   let ans = 0;
+//   let mp = new Map();
+//   while (right < s.length) {
+//     if (mp.has(s[right])) {
+//       mp.set(s[right], mp.get(s[right]) + 1);
+//     } else {
+//       mp.set(s[right], 1);
+//     }
+//     while (mp.size > k) {
+//       mp.set(s[left], mp.get(s[left]) - 1);
+//       if (mp.get(s[left]) === 0) {
+//         mp.delete(s[left]);
+//       }
+//       left++;
+//     }
+//     ans = Math.max(ans, right - left + 1);
+//     right++
+//   }
+//   return ans;
+// }
+// console.log(kDistinctcharacters("Xyyzya", 3));
+
+// 61.>>Find the longest substring without a repeating character
+// function longestWithoutRepeat(s) {
+//   let left = 0;
+//   ans = 0;
+//   let map = new set();
+//   for (let right = 0; right < s.length; right++) {
+//     if (map.has(s[right])) {
+//       map.delete(s[left]);
+//       left++;
+//     }
+//     map.set(s[right]);
+//     ans = Math.max(ans, right - left + 1);
+//   }
+//   return ans;
+// }
+// console.log(longestWithoutRepeat("aabcccbcb"));
+
+// 62.>>Print matrix in spiral order
+// function spiralMatrix(n) {
+//   let arr = new Array(n);
+//   for (let i = 0; i < arr.length; i++) {
+//     arr[i] = new Array(n);
+//   }
+//   let leftmostcol = 0,
+//     rightmostcol = n - 1,
+//     topmostrow = 0,
+//     bottommostrow = n - 1,
+//     num = 1;
+//   while (num <= n * n) {
+//     for (let i = leftmostcol; i <= rightmostcol; i++) {
+//       arr[topmostrow][i] = num;
+//       num++;
+//     }
+//     topmostrow++;
+//     for (let i = topmostrow; i<=bottommostrow; i++) {
+//       arr[i][rightmostcol] = num;
+//       num++;
+//     }
+//     rightmostcol--;
+//     for (let i = rightmostcol; i >= leftmostcol; i--) {
+//       arr[bottommostrow][i] = num;
+//       num++;
+//     }
+//     bottommostrow--;
+//     for (let i = bottommostrow; i >= topmostrow; i--) {
+//       arr[i][leftmostcol] = num;
+//       num++;
+//     }
+//     leftmostcol++;
+//   }
+//   return arr;
+// }
+// console.log(spiralMatrix(3));
+
+// 63.>>Best time to buy and sell stock
+// You have an array in which the ith element is the price of a given stock on day i.
+
+// Design an algorithm to find the maximum profit by buying a share on one day and selling it on another day.
+// You may repeat this across the days (i.e., buy one and sell one share of the stock multiple times).
+
+// Note: You may not engage in multiple transactions at the same time (i.e., you must sell the stock before you buy again)
+
+// function bestTime(stocks) {
+//   let buyingprice = stocks[0];
+//   let profit = 0;
+//   for (let i = 1; i < stocks.length; i++) {
+//     let currentprice = stocks[i];
+//     if (buyingprice > currentprice) {
+//       buyingprice = currentprice;
+//     }
+//     if (currentprice > buyingprice) {
+//       profit = profit + currentprice - buyingprice;
+//       buyingprice = currentprice;
+//     }
+//   }
+//   return profit
+// }
+// console.log(bestTime([7, 1, 5, 3, 6, 4]));
+
+// 64.>>Find if the string permutation can form a palindrome
+// function ispermutationPalindrome(string) {
+//   let map = new Map();
+//   for (let i = 0; i < string.length; i++) {
+//     map.set(string[i], (map.get(string[i]) || 0) + 1);
+//   }
+//   let oddcount = 0;
+//   for (let value of map.values()) {
+//     if (value % 2 === 1) {
+//       oddcount++;
+//     }
+//   }
+//   if (oddcount <= 1) {
+//     return true;
+//   } else {
+//     return false;
+//   }
+// }
+// console.log(ispermutationPalindrome("nnaammed"));
+
+// 65.>>set matrix rows and columns to zero
+// function setToZero(matrix) {
+//   let n = matrix.length;
+//   let m = matrix[0].length;
+//   const row = new Array(n);
+//   for (let i = 0; i < n; i++) {
+//     row.push(false);
+//   }
+//   const col = new Array(m);
+//   for (let j = 0; j < m; j++) {
+//     row.push(false);
+//   }
+//   for (let i = 0; i < n; i++) {
+//     for (let j = 0; j < m; j++) {
+//       if (matrix[i][j] == 0) {
+//         row[i] = true;
+//         col[j] = true;
+//       }
+//     }
+//   }
+//   for(let i=0; i<n; i++){
+//     for(let j=0; j<m; j++){
+//         if(row[i]===true || col[j]===true){
+//             matrix[i][j]=0
+//         }
+//     }
+//   }
+//   return matrix
+// }
+// console.log(
+//   setToZero([
+//     [0, 1, 2, 0],
+//     [3, 4, 5, 2],
+//     [1, 3, 1, 5],
+//   ])
+// );
+
+// 66.>>First missing positive Number
+// function missingPositive(arr) {
+//   let sorted = arr.sort((a, b) => a - b);
+//   console.log(sorted);
+//   let ans = 0;
+//   for (let i = 1; i < sorted.length; i++) {
+//     if (i !== sorted[i]) {
+//       ans = i;
+//     }
+//   }
+//   return ans;
+// }
+// console.log(missingPositive([5, 3, 1, 2, 7, -3, 0, 4]));
+
+//Another Approach
+
+// function missingPositive(arr) {
+//   let set = new Set();
+//   for (let i = 0; i < arr.length; i++) {
+//     set.add(arr[i]);
+//   }
+//   console.log(set)
+//   for (let i = 1; i <= arr.length; i++) {
+//     //loop run from 1 to n because we need to check for positive number only
+//     if (!set.has(i)) {
+//       return i;
+//     }
+//   }
+// }
+// console.log(missingPositive([5, 3, 1, 2, 7, -3, 0, 4]));
+// console.log(missingPositive([3, 4, -1, 1]));
+
+// 67.>>Matrix multiplication
+// Note: The number of columns in the first matrix will always be equal to the number of rows in the second matrix
+// function matrixMultiplication(n1, m1, n2, m2, matrix1, matrix2) {
+//   let grid3 = new Array(n1);
+//   for (let i = 0; i < n1; i++) {
+//     grid3[i] = new Array(m2).fill(0);
+//   }
+//   for (let r = 0; r < n1; r++) {
+//     for (let c = 0; c < m2; c++) {
+//       for (let k = 0; k < m1; k++) {
+////we can keep n2 also here in place of m1 coz row and column is equal that is 2
+//         grid3[r][c] += matrix1[r][k] * matrix2[k][c];
+//       }
+//     }
+//   }
+//   return grid3;
+// }
+// console.log(
+//   matrixMultiplication(
+//     2,2,2,5,
+//     [
+//       [1, 4],
+//       [5, 9],
+//     ],
+//     [
+//       [1, 2, 8, 8, 4],
+//       [3, 3, 6, 5, 2],
+//     ]
+//   )
+// );
+
+//retry
