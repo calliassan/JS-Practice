@@ -699,14 +699,13 @@ const { set } = require("mongoose");
 // console.log(fibonacci(7));
 
 // 35.>>Factorial
-// function factorial(n){
-//     if(n<=1){
-//         return 1
-//     }
-//     return n * factorial(n-1)
-
+// function factorial(n) {
+//   if (n <= 1) {
+//     return 1;
+//   }
+//   return n * factorial(n - 1);
 // }
-// console.log(factorial(4))
+// console.log(factorial(0));
 
 // ***************MAP************************************
 
@@ -1667,4 +1666,115 @@ const { set } = require("mongoose");
 //   )
 // );
 
-//retry
+// 68.>>String Permutation
+// function StringPermutation(n, s, permutation) {
+//   let arr = new Array(n).fill(0);
+//   //creating new array and filling with zero. we can also do arr=[], but this shall be filled with the loop
+//   for (let i = 0; i < n; i++) {
+//     //iterating over the sting
+//     let ch = s.charAt(i);
+//     //storing character in ch
+//     let idx = permutation[i] - 1;
+//     //reducing the index to fit the character properly
+//     arr[idx] = ch;
+//   }
+//   return arr;
+// }
+// console.log(StringPermutation(4, "abcd", [2, 4, 3, 1]));
+
+// **********************************************sorting*********************************************
+
+// 69.>>Bubble Sort
+// function BubbleSort(arr) {
+//   for (let i = 0; i < arr.length; i++) {
+//     for (let j = 0; j < arr.length - 1 - i; j++) {
+//       if (arr[j] > arr[j + 1]) {
+//         let temp = arr[j];
+//         arr[j] = arr[j + 1];
+//         arr[j + 1] = temp;
+//       }
+//     }
+//   }
+//   return arr;
+// }
+// console.log(BubbleSort([8, 4, 2, 6]));
+
+// 70.>>Merge sort
+// function Merge(A, B) {
+//   let n = A.length,
+//     m = B.length;
+//   let arr = [];
+//   let left = 0;
+//   let right = 0;
+//   while (left < n && right < m) {
+//     if (A[left] <= B[right]) {
+//       arr.push(A[left]);
+//       left++;
+//     } else {
+//       arr.push(B[right]);
+//       right++;
+//     }
+//   }
+//   while (left < n) {
+//     arr.push(A[left]);
+//     left++;
+//   }
+//   while (right < m) {
+//     arr.push(B[right]);
+//     right++;
+//   }
+
+//   return arr;
+// }
+// console.log(Merge([3, 4, 5, 7, 8], [1, 3, 6, 7, 9, 11]));
+
+// function mergeSort(n, newarr) {
+//   while (n <= 1) {
+//     return newarr;
+//   }
+//   let mid = Math.floor(n / 2);
+//   let left = mergeSort(mid, newarr.slice(0, mid));
+//   let right = mergeSort(n - mid, newarr.slice(mid));
+//   return Merge(left, right);
+// }
+// console.log(mergeSort(5, [12, 8, 3, 0, 7]));
+
+// 71.>>Find next greater number with same set of digits
+// function reverse(arr, start, end) {
+//   while (start < end) {
+//     let temp = arr[start];
+//     arr[start] = arr[end];
+//     arr[end] = temp;
+//     start++;
+//     end--;
+//   }
+
+//   return arr;
+// }
+// console.log(reverse([1, 2, 4, 3], 0, 3));
+
+// function nextGreater(n) {
+//   let arr = n.toString().split("");
+//   console.log(arr);
+//   let i=arr.length-2;
+//   while (i > 0) {
+//     if (arr[i] < arr[i + 1]) {
+//       break;
+//     }
+//     i--
+//   }
+//   if (i < 0) {
+//     return -1;
+//   }
+//   let j = arr.length - 1;
+//   while (j > 0) {
+//     if (arr[j] > arr[i]) {
+//       break;
+//     }
+//     j--;
+//   }
+//   [arr[i], arr[j]] = [arr[j], arr[i]];
+//   reverse(arr, i + 1, arr.length-1);
+//   return parseInt(arr.join(""))
+// }
+// console.log(nextGreater(1243));
