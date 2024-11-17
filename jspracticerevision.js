@@ -56,12 +56,12 @@ const { set } = require("mongoose");
 // }
 // console.log(findElement(5, [1, 2, 4, 3, 4], 0));
 
-// 6.// function leftRotation(arr) {
+// 6.// function iRotation(arr) {
 //   let shifted = arr.shift();
 //   arr.push(shifted);
 //   return arr;
 // }
-// console.log(leftRotation([1, 2, 3, 4, 5]));
+// console.log(iRotation([1, 2, 3, 4, 5]));
 
 7; //
 // function extractNumbers(arr) {
@@ -190,32 +190,32 @@ const { set } = require("mongoose");
 // console.log(palindrome("ashish"));
 
 // 16.>>Two Pointer
-// function isArrsorted(arr) {
-//   let left = 0,
-//     right = 1;
-//   while (right < arr.length) {
-//     if (arr[left] > arr[right]) {
+// function isarrsorted(arr) {
+//   let i = 0,
+//     j = 1;
+//   while (j < arr.length) {
+//     if (arr[i] > arr[j]) {
 //       return false;
 //     }
-//     left++;
-//     right++;
+//     i++;
+//     j++;
 //   }
 //   return true;
 // }
 
-// console.log(isArrsorted([1, 3, 4, 2, 0]));
+// console.log(isarrsorted([1, 3, 4, 2, 0]));
 
 // 17.>>
 // function palindrome(str) {
 //   let arr = str.split("");
-//   let left = 0,
-//     right = arr.length - 1;
-//   while (left < right) {
-//     if (arr[left] !== arr[right]) {
+//   let i = 0,
+//     j = arr.length - 1;
+//   while (i < j) {
+//     if (arr[i] !== arr[j]) {
 //       return false;
 //     }
-//     left++;
-//     right--;
+//     i++;
+//     j--;
 //   }
 //   return true;
 // }
@@ -227,16 +227,16 @@ const { set } = require("mongoose");
 // function reversearr(str) {
 //   let arr = str.split("");
 
-//   let left = 0,
-//     right = arr.length - 1;
+//   let i = 0,
+//     j = arr.length - 1;
 //   let newarr = [];
-//   while (right >= left) {
-//     if (right < left) {
+//   while (j >= i) {
+//     if (j < i) {
 //       return false;
 //     }
-//     newarr.push(arr[right]);
+//     newarr.push(arr[j]);
 
-//     right--;
+//     j--;
 //   }
 //   return newarr.join("");
 // }
@@ -246,15 +246,15 @@ const { set } = require("mongoose");
 // function reversearr(str) {
 //   let arr = str.split("");
 
-//   let left = 0,
-//     right = arr.length - 1;
+//   let i = 0,
+//     j = arr.length - 1;
 
-//   while (left < right) {
-//     let temp = arr[left];
-//     arr[left] = arr[right];
-//     arr[right] = temp;
-//     left++;
-//     right--;
+//   while (i < j) {
+//     let temp = arr[i];
+//     arr[i] = arr[j];
+//     arr[j] = temp;
+//     i++;
+//     j--;
 //   }
 //   return arr.join("");
 // }
@@ -306,7 +306,7 @@ const { set } = require("mongoose");
 //  or not.
 // Magic square is a square that has the same sum of rows, columns and diagonals.
 
-// function leftDiagonal(matrix) {
+// function iDiagonal(matrix) {
 //   let sum = 0;
 //   for (let i = 0; i < matrix.length; i++) {
 //     sum = sum + matrix[i][i];
@@ -314,13 +314,13 @@ const { set } = require("mongoose");
 //   return sum;
 // }
 // console.log(
-//   leftDiagonal([
+//   iDiagonal([
 //     [4, 9, 2],
 //     [3, 5, 7],
 //     [8, 1, 6],
 //   ])
 // );
-// function rightDiagonal(matrix) {
+// function jDiagonal(matrix) {
 //   let sum = 0;
 //   let col = matrix.length - 1;
 //   for (let i = 0; i < matrix.length; i++, col--) {
@@ -329,7 +329,7 @@ const { set } = require("mongoose");
 //   return sum;
 // }
 // console.log(
-//   rightDiagonal([
+//   jDiagonal([
 //     [4, 9, 2],
 //     [3, 5, 7],
 //     [8, 1, 6],
@@ -391,8 +391,8 @@ const { set } = require("mongoose");
 // }
 
 // function magicSquare(matrix, N) {
-//   let diag1 = rightDiagonal(matrix);
-//   let diag2 = leftDiagonal(matrix);
+//   let diag1 = jDiagonal(matrix);
+//   let diag2 = iDiagonal(matrix);
 //   let sum1 = rowSum(matrix);
 //   let sum2 = sumCol(matrix);
 //   if (diag1 === diag2 && sum1 === sum2 && diag1 === sum1) {
@@ -414,16 +414,16 @@ const { set } = require("mongoose");
 
 // 24.>>Binary Search(Applicable only if sorted array)
 // function binarySearch(N, arr, target) {
-//   let left = 0,
-//     right = N - 1;
-//   while (left <= right) {
-//     let mid = Math.floor((left + right) / 2);
+//   let i = 0,
+//     j = N - 1;
+//   while (i <= j) {
+//     let mid = Math.floor((i + j) / 2);
 //     if (arr[mid] === target) {
 //       return mid;
 //     } else if (arr[mid] < target) {
-//       left = mid + 1;
+//       i = mid + 1;
 //     } else {
-//       right = arr[mid] - 1;
+//       j = arr[mid] - 1;
 //     }
 //   }
 //   return -1;
@@ -518,20 +518,20 @@ const { set } = require("mongoose");
 // function compressarr(str) {
 //   let compressed = "";
 //   let count = 1;
-//   let left = str[0];
+//   let i = str[0];
 //   for (let i = 1; i < str.length; i++) {
-//     if (left === str[i]) {
+//     if (i === str[i]) {
 //       count++;
 //     } else {
-//       compressed += left + count;
+//       compressed += i + count;
 //       count = 1;
-//       left = str[i];
+//       i = str[i];
 //     }
 //   }
-//   //we still have b and 1 in the left and count , check by console. Kindly add that also;
-//   console.log(left);
+//   //we still have b and 1 in the i and count , check by console. Kindly add that also;
+//   console.log(i);
 //   console.log(count);
-//   compressed += left + count;
+//   compressed += i + count;
 //   return compressed.length<str.length?compressed:str;
 // }
 // console.log(compressarr("aabacccccb"));
@@ -542,14 +542,14 @@ const { set } = require("mongoose");
 // 29.>>Reverse letters of words in a sentence with words
 // function reverseletters(word) {
 //   let arr = word.split("");
-//   let left = 0,
-//     right = arr.length - 1;
-//   while (left < right) {
-//     let temp = arr[left];
-//     arr[left] = arr[right];
-//     arr[right] = temp;
-//     left++;
-//     right--;
+//   let i = 0,
+//     j = arr.length - 1;
+//   while (i < j) {
+//     let temp = arr[i];
+//     arr[i] = arr[j];
+//     arr[j] = temp;
+//     i++;
+//     j--;
 //   }
 //   return arr.join("");
 // }
@@ -568,8 +568,8 @@ const { set } = require("mongoose");
 // console.log(ReverseLetters("abc def ghi"));
 
 // 30.>>>max Product
-//Given the array of integers nums of size n, you will choose two different indices i and j of that array.
-// Return the maximum value of (nums[i]-1)*(nums[j]-1).
+//Given the array of integers arr of size n, you will choose two different indices i and j of that array.
+// Return the maximum value of (arr[i]-1)*(arr[j]-1).
 
 // function maxProduct(arr) {
 //   let sortedarr = arr.sort((a, b) => b - a);
@@ -832,10 +832,10 @@ const { set } = require("mongoose");
 // console.log(mostFrequent("Statements are unique EEEE"));
 
 // 39.>>>Distinct Numbers
-// function DistinctNumbers(n, nums) {
+// function DistinctNumbers(n, arr) {
 //   let s = new Set();
 //   for (let i = 0; i < n; i++) {
-//     s.add(nums[i]);
+//     s.add(arr[i]);
 //   }
 //   console.log(s);
 //   return s.size;
@@ -990,14 +990,14 @@ const { set } = require("mongoose");
 // }
 // console.log(gcd(24, 36));
 
-// function gdcArray(arr) {
+// function gdcarray(arr) {
 //   let res = gcd(arr[0], arr[1]);
 //   for (let i = 2; i < arr.length; i++) {
 //     res = gcd(res, arr[i]);
 //   }
 //   return res;
 // }
-// console.log(gdcArray([4, 6, 8, 16]));
+// console.log(gdcarray([4, 6, 8, 16]));
 
 // 46.>>Reverse a number
 // function reverseNumber(N) {
@@ -1017,81 +1017,81 @@ const { set } = require("mongoose");
 // function findPair(arr, target) {
 //   let copyarr = [...arr];
 //   let sorted = arr.sort((a, b) => a - b);
-//   let left = 0,
-//     right = arr.length - 1;
-//   while (left < right) {
-//     let sum = sorted[left] + sorted[right];
+//   let i = 0,
+//     j = arr.length - 1;
+//   while (i < j) {
+//     let sum = sorted[i] + sorted[j];
 //     if (sum === target) {
 //       break;
 //     } else if (sum > target) {
-//       right--;
+//       j--;
 //     } else {
-//       left++;
+//       i++;
 //     }
 //   }
-//   let indx1 = copyarr.indexOf(sorted[left]);
+//   let indx1 = copyarr.indexOf(sorted[i]);
 //   let startpos = 0;
-//   if (sorted[left] == sorted[right]) {
+//   if (sorted[i] == sorted[j]) {
 //     startpos = indx1 + 1;
 //   }
-//   let indx2 = copyarr.indexOf(sorted[right], startpos);
+//   let indx2 = copyarr.indexOf(sorted[j], startpos);
 //   return [Math.min(indx1, indx2), Math.max(indx1, indx2)];
 // }
 // console.log(findPair([2, 5, 9, 6, 3], 12));
 
 //Another Approach
-// function twoSum(nums, target) {
+// function twoSum(arr, target) {
 //   let arr_pair = [];
-//   for (let i = 0; i < nums.length; i++) {
-//     arr_pair.push([nums[i], i]);
+//   for (let i = 0; i < arr.length; i++) {
+//     arr_pair.push([arr[i], i]);
 //   }
 //   console.log(arr_pair);
 //   arr_pair.sort((a, b) => a[0] - b[0]);
 //   console.log(arr_pair);
 
-//   let left = 0;
-//   let right = nums.length - 1;
-//   while (left < right) {
-//     let sum = arr_pair[left][0] + arr_pair[right][0];
+//   let i = 0;
+//   let j = arr.length - 1;
+//   while (i < j) {
+//     let sum = arr_pair[i][0] + arr_pair[j][0];
 //     if (sum > target) {
-//       right--;
+//       j--;
 //     } else if (sum < target) {
-//       left++;
+//       i++;
 //     } else {
-//       return [arr_pair[left][1], arr_pair[right][1]].sort((a, b) => a - b);
+//       return [arr_pair[i][1], arr_pair[j][1]].sort((a, b) => a - b);
 //     }
 //   }
 //   return [];
 // }
 // console.log(twoSum([1, 2, 4, 6, 3, 5], 9));
 
-//sorter[left]==sorted[right] is used to tackle the duplicate number because if it is say [2,5,9,6,3,2] (2 is at left
-// and also t right so when we do index of we will get 0 as index which is not correct so we search from 0+1 )
+//sorter[i]==sorted[j] is used to tackle the duplicate number because if it is say [2,5,9,6,3,2] (2 is at i
+// and also t j so when we do index of we will get 0 as index which is not correct so we search from 0+1 )
 //this all is done because of unsorted array
 // TC:(nlogn)
 // SC: O(n)
 
-// 48.>>>Merge Two sorted Arrays;
+// 48.>>>Merge Two sorted arrays;
 // function mergeSorted(n, arr1, m, arr2) {
-//   let left = 0,
-//     right = 0;
+//   let i = 0,
+//     j = 0;
 //   let c = [];
-//   while (left < n && right < m) {
-//     if (arr1[left] <= arr2[right]) {
-//       c.push(arr1[left]);
-//       left++;
+//   while (i < n && j < m) {
+//     if (arr1[i] <= arr2[j]) {
+//       c.push(arr1[i]);
+//       i++;
 //     } else {
-//       c.push(arr2[right]);
-//       right++;
+//       c.push(arr2[j]);
+//       j++;
 //     }
 //   }
-//   while (left < n) {
-//     c.push(arr1[left]);
-//     left++;
+//   while (i < n) {
+//     c.push(arr1[i]);
+//     i++;
 //   }
-//   while (right < m) {
-//     c.push(arr2[right]);
-//     right++;
+//   while (j < m) {
+//     c.push(arr2[j]);
+//     j++;
 //   }
 //   return c;
 // }
@@ -1104,7 +1104,7 @@ const { set } = require("mongoose");
 // Do not allocate extra space for another array, you must do this by modifying the input array in-place with O(1)
 // extra memory.
 
-// function removeDuplicatesFromSortedArrayII(n, arr) {
+// function removeDuplicatesFromSortedarrayII(n, arr) {
 //   let j = 0;
 //   for (let i = 0; i < n; i++) {
 //     if (j < 2 || arr[i] > arr[j - 2]) {
@@ -1115,10 +1115,10 @@ const { set } = require("mongoose");
 //   console.log(arr);
 //   return j;
 // }
-// console.log(removeDuplicatesFromSortedArrayII(9, [2, 2, 2, 3, 4, 4, 4, 5, 5]));
+// console.log(removeDuplicatesFromSortedarrayII(9, [2, 2, 2, 3, 4, 4, 4, 5, 5]));
 
 // 50.>>>Triplet with maximum sum
-//Given an array nums, you need to find the maximum sum of triplet (nums[i] + nums[j] + nums[k]) such that 0 <= i < j < k and nums[i] < nums[j] < nums[k].
+//Given an array arr, you need to find the maximum sum of triplet (arr[i] + arr[j] + arr[k]) such that 0 <= i < j < k and arr[i] < arr[j] < arr[k].
 // If no such triplet exists print 0.
 
 // function findithitem(arr, j, n) {
@@ -1161,17 +1161,17 @@ const { set } = require("mongoose");
 // 51.>>>Find the container that holds the most water
 // function mostwater(height) {
 //   let ans = 0;
-//   let left = 0;
-//   let right = height.length - 1;
+//   let i = 0;
+//   let j = height.length - 1;
 
-//   while (left < right) {
-//     let area = Math.min(height[left], height[right]) * (right - left);
+//   while (i < j) {
+//     let area = Math.min(height[i], height[j]) * (j - i);
 
 //     ans = Math.max(ans, area);
-//     if (height[left] < height[right]) {
-//       left++;
+//     if (height[i] < height[j]) {
+//       i++;
 //     } else {
-//       right--;
+//       j--;
 //     }
 //   }
 //   return ans;
@@ -1181,20 +1181,20 @@ const { set } = require("mongoose");
 
 //we can also use area as under to arrive at answer
 // function maxArea(height) {
-//   let left = 0;
-//   let right = height.length - 1;
+//   let i = 0;
+//   let j = height.length - 1;
 //   let max = 0;
 
-//   while (left < right) {
-//     let gap = right - left;
-//     let h = Math.min(height[left], height[right]);
+//   while (i < j) {
+//     let gap = j - i;
+//     let h = Math.min(height[i], height[j]);
 //     let water = gap * h;
 
 //     if (water > max) {
 //       max = water;
-//       left++;
+//       i++;
 //     } else {
-//       right--;
+//       j--;
 //     }
 //   }
 
@@ -1304,9 +1304,9 @@ const { set } = require("mongoose");
 //     pre.push(sum);
 //   }
 //   for (let i = 1; i < n - 1; i++) {
-//     const leftsum = pre[i - 1];
-//     const rightsum = pre[n - 1] - pre[i];
-//     if (leftsum === rightsum) {
+//     const isum = pre[i - 1];
+//     const jsum = pre[n - 1] - pre[i];
+//     if (isum === jsum) {
 //       return i;
 //     }
 //   }
@@ -1365,7 +1365,7 @@ const { set } = require("mongoose");
 // console.log(findAllsubarrays([1, 2, 3, 4, 5]));
 
 // 57.>>Find if there exists a subarray of sum 0
-// function subArray(arr) {
+// function subarray(arr) {
 //   let sum = 0;
 //   let newset = new Set();
 //   for (let i = 0; i < arr.length; i++) {
@@ -1379,7 +1379,7 @@ const { set } = require("mongoose");
 //   }
 //   return false;
 // }
-// console.log(subArray([4, 2, -2, 5]));
+// console.log(subarray([4, 2, -2, 5]));
 
 // 58.>>Find longest subarray with sum 0
 // Given an integer array, find the largest subarray with sum 0 . If there is more than one subarray with the largest length,
@@ -1388,22 +1388,22 @@ const { set } = require("mongoose");
 // If there is no such sub-array print -1.
 
 // function longestSubarray(arr) {
-//   let leftans = -1,
-//     rightans = -2;
+//   let ians = -1,
+//     jans = -2;
 
 //   let sum = 0;
 //   let newmap = new Map();
 //   newmap.set(0, -1); //to handle edge case i.e if sum itself becomes zero
-//   for (let right = 0; right < arr.length; right++) {
-//     sum += arr[right];
+//   for (let j = 0; j < arr.length; j++) {
+//     sum += arr[j];
 //     if (newmap.has(sum)) {
-//       let left = newmap.get(sum) + 1;
-//       if (right - left + 1 > rightans - leftans + 1) {
-//         rightans = right;
-//         leftans = left;
+//       let i = newmap.get(sum) + 1;
+//       if (j - i + 1 > jans - ians + 1) {
+//         jans = j;
+//         ians = i;
 //       }
 //     } else {
-//       newmap.set(sum, right);
+//       newmap.set(sum, j);
 //     }
 //   }
 // }
@@ -1420,22 +1420,22 @@ const { set } = require("mongoose");
 // 700
 
 // function maximumSubarraySumSizeK(N, A, K) {
-//   let left = 0,
-//     right = K - 1,
+//   let i = 0,
+//     j = K - 1,
 //     maxsum = -Infinity;
 //   let sum = 0;
-//   for (let i = left; i <= right; i++) {
+//   for (let i = i; i <= j; i++) {
 //     sum = sum + A[i];
 //   }
 //   maxsum = Math.max(sum, maxsum);
-//   left++;
-//   right++;
+//   i++;
+//   j++;
 
-//   while (right < N ) {
-//     sum = sum - A[left - 1] + A[right];
+//   while (j < N ) {
+//     sum = sum - A[i - 1] + A[j];
 //     maxsum = Math.max(maxsum, sum);
-//     left++;
-//     right++;
+//     i++;
+//     j++;
 //   }
 //   return maxsum;
 // }
@@ -1443,25 +1443,25 @@ const { set } = require("mongoose");
 
 // 60.>>>Find the longest substring with the at most k distinct characters
 // function kDistinctcharacters(s, k) {
-//   let left = 0,
-//     right = 0;
+//   let i = 0,
+//     j = 0;
 //   let ans = 0;
 //   let mp = new Map();
-//   while (right < s.length) {
-//     if (mp.has(s[right])) {
-//       mp.set(s[right], mp.get(s[right]) + 1);
+//   while (j < s.length) {
+//     if (mp.has(s[j])) {
+//       mp.set(s[j], mp.get(s[j]) + 1);
 //     } else {
-//       mp.set(s[right], 1);
+//       mp.set(s[j], 1);
 //     }
 //     while (mp.size > k) {
-//       mp.set(s[left], mp.get(s[left]) - 1);
-//       if (mp.get(s[left]) === 0) {
-//         mp.delete(s[left]);
+//       mp.set(s[i], mp.get(s[i]) - 1);
+//       if (mp.get(s[i]) === 0) {
+//         mp.delete(s[i]);
 //       }
-//       left++;
+//       i++;
 //     }
-//     ans = Math.max(ans, right - left + 1);
-//     right++
+//     ans = Math.max(ans, j - i + 1);
+//     j++
 //   }
 //   return ans;
 // }
@@ -1469,16 +1469,16 @@ const { set } = require("mongoose");
 
 // 61.>>Find the longest substring without a repeating character
 // function longestWithoutRepeat(s) {
-//   let left = 0;
+//   let i = 0;
 //   ans = 0;
 //   let map = new set();
-//   for (let right = 0; right < s.length; right++) {
-//     if (map.has(s[right])) {
-//       map.delete(s[left]);
-//       left++;
+//   for (let j = 0; j < s.length; j++) {
+//     if (map.has(s[j])) {
+//       map.delete(s[i]);
+//       i++;
 //     }
-//     map.set(s[right]);
-//     ans = Math.max(ans, right - left + 1);
+//     map.set(s[j]);
+//     ans = Math.max(ans, j - i + 1);
 //   }
 //   return ans;
 // }
@@ -1486,36 +1486,36 @@ const { set } = require("mongoose");
 
 // 62.>>Print matrix in spiral order
 // function spiralMatrix(n) {
-//   let arr = new Array(n);
+//   let arr = new array(n);
 //   for (let i = 0; i < arr.length; i++) {
-//     arr[i] = new Array(n);
+//     arr[i] = new array(n);
 //   }
-//   let leftmostcol = 0,
-//     rightmostcol = n - 1,
+//   let imostcol = 0,
+//     jmostcol = n - 1,
 //     topmostrow = 0,
 //     bottommostrow = n - 1,
 //     num = 1;
 //   while (num <= n * n) {
-//     for (let i = leftmostcol; i <= rightmostcol; i++) {
+//     for (let i = imostcol; i <= jmostcol; i++) {
 //       arr[topmostrow][i] = num;
 //       num++;
 //     }
 //     topmostrow++;
 //     for (let i = topmostrow; i<=bottommostrow; i++) {
-//       arr[i][rightmostcol] = num;
+//       arr[i][jmostcol] = num;
 //       num++;
 //     }
-//     rightmostcol--;
-//     for (let i = rightmostcol; i >= leftmostcol; i--) {
+//     jmostcol--;
+//     for (let i = jmostcol; i >= imostcol; i--) {
 //       arr[bottommostrow][i] = num;
 //       num++;
 //     }
 //     bottommostrow--;
 //     for (let i = bottommostrow; i >= topmostrow; i--) {
-//       arr[i][leftmostcol] = num;
+//       arr[i][imostcol] = num;
 //       num++;
 //     }
-//     leftmostcol++;
+//     imostcol++;
 //   }
 //   return arr;
 // }
@@ -1570,11 +1570,11 @@ const { set } = require("mongoose");
 // function setToZero(matrix) {
 //   let n = matrix.length;
 //   let m = matrix[0].length;
-//   const row = new Array(n);
+//   const row = new array(n);
 //   for (let i = 0; i < n; i++) {
 //     row.push(false);
 //   }
-//   const col = new Array(m);
+//   const col = new array(m);
 //   for (let j = 0; j < m; j++) {
 //     row.push(false);
 //   }
@@ -1638,9 +1638,9 @@ const { set } = require("mongoose");
 // 67.>>Matrix multiplication
 // Note: The number of columns in the first matrix will always be equal to the number of rows in the second matrix
 // function matrixMultiplication(n1, m1, n2, m2, matrix1, matrix2) {
-//   let grid3 = new Array(n1);
+//   let grid3 = new array(n1);
 //   for (let i = 0; i < n1; i++) {
-//     grid3[i] = new Array(m2).fill(0);
+//     grid3[i] = new array(m2).fill(0);
 //   }
 //   for (let r = 0; r < n1; r++) {
 //     for (let c = 0; c < m2; c++) {
@@ -1668,7 +1668,7 @@ const { set } = require("mongoose");
 
 // 68.>>String Permutation
 // function StringPermutation(n, s, permutation) {
-//   let arr = new Array(n).fill(0);
+//   let arr = new array(n).fill(0);
 //   //creating new array and filling with zero. we can also do arr=[], but this shall be filled with the loop
 //   for (let i = 0; i < n; i++) {
 //     //iterating over the sting
@@ -1704,24 +1704,24 @@ const { set } = require("mongoose");
 //   let n = A.length,
 //     m = B.length;
 //   let arr = [];
-//   let left = 0;
-//   let right = 0;
-//   while (left < n && right < m) {
-//     if (A[left] <= B[right]) {
-//       arr.push(A[left]);
-//       left++;
+//   let i = 0;
+//   let j = 0;
+//   while (i < n && j < m) {
+//     if (A[i] <= B[j]) {
+//       arr.push(A[i]);
+//       i++;
 //     } else {
-//       arr.push(B[right]);
-//       right++;
+//       arr.push(B[j]);
+//       j++;
 //     }
 //   }
-//   while (left < n) {
-//     arr.push(A[left]);
-//     left++;
+//   while (i < n) {
+//     arr.push(A[i]);
+//     i++;
 //   }
-//   while (right < m) {
-//     arr.push(B[right]);
-//     right++;
+//   while (j < m) {
+//     arr.push(B[j]);
+//     j++;
 //   }
 
 //   return arr;
@@ -1733,9 +1733,9 @@ const { set } = require("mongoose");
 //     return newarr;
 //   }
 //   let mid = Math.floor(n / 2);
-//   let left = mergeSort(mid, newarr.slice(0, mid));
-//   let right = mergeSort(n - mid, newarr.slice(mid));
-//   return Merge(left, right);
+//   let i = mergeSort(mid, newarr.slice(0, mid));
+//   let j = mergeSort(n - mid, newarr.slice(mid));
+//   return Merge(i, j);
 // }
 // console.log(mergeSort(5, [12, 8, 3, 0, 7]));
 
@@ -1756,12 +1756,13 @@ const { set } = require("mongoose");
 // function nextGreater(n) {
 //   let arr = n.toString().split("");
 //   console.log(arr);
-//   let i=arr.length-2;
+//   let i = arr.length - 2;
 //   while (i > 0) {
 //     if (arr[i] < arr[i + 1]) {
 //       break;
 //     }
-//     i--
+//     console.log(i);
+//     i--;
 //   }
 //   if (i < 0) {
 //     return -1;
@@ -1771,10 +1772,360 @@ const { set } = require("mongoose");
 //     if (arr[j] > arr[i]) {
 //       break;
 //     }
+//     console.log(j);
 //     j--;
 //   }
 //   [arr[i], arr[j]] = [arr[j], arr[i]];
-//   reverse(arr, i + 1, arr.length-1);
-//   return parseInt(arr.join(""))
+//   reverse(arr, i + 1, arr.length - 1);
+//   return parseInt(arr.join(""));
 // }
 // console.log(nextGreater(1243));
+
+// 72.>>DSA test
+
+// function moveZerose(arr) {
+//   let j = 0;
+//   for (let i = 0; i < arr.length; i++) {
+//     if (arr[i] !== 0) {
+//       let temp = arr[j];
+//       arr[j] = arr[i];
+//       arr[i] = temp;
+
+//       j++;
+//     }
+//   }
+//   return arr;
+// }
+// console.log(moveZerose([0, 1, 4, 0, 2, 0, 3]));
+
+// 73.>>Longest subarray(DSA TEST)
+
+// function longestSubarray(N, K, arr) {
+//   let maxlength = 0;
+//   for (let i = 0; i < arr.length; i++) {
+//     let sum = 0;
+//     for (let j = i; j < arr.length; j++) {
+//       sum += arr[j];
+//       if (sum === K) {
+//         maxlength = Math.max(maxlength, j - 1 + 1);
+//       }
+//     }
+//   }
+//   return maxlength;
+// }
+// console.log(longestSubarray(6, 15, [10, 5, 2, 7, 1, 9]));
+// TC:0(n2)
+
+// 74.>>Longest subarray with sum equals to k
+// function longestSubarray(N, K, arr) {
+//   let maxlength = 0;
+//   let sum = 0;
+//   let arr = [];
+//   let map = new Map();
+//   map.set(0, -1);
+//   for (let i = 0; i < N; i++) {
+//     sum += arr[i];
+//     let suprahand = sum - K;
+//     if (map.has(suprahand)) {
+//       const indexmap = map.get(suprahand);
+//       let length = i - indexmap;
+//       maxlength = Math.max(maxlength, length);
+//     } else {
+//       map.set(sum, i);
+//     }
+//   }
+//   return maxlength;
+// }
+// console.log(longestSubarray(6, 15, [10, 5, 2, 7, 1, 9]));
+
+// 75.>>Rotate the array by k steps to j
+// function rotatej(n, k, arr) {
+//   const newarr = new Array(n);
+//   console.log(newarr);
+//   for (let i = 0; i < n; i++) {
+//     k = k % n;
+//     newarr[(i + k) % n] = arr[i];
+//   }
+//   for (let i = 0; i < n; i++) {
+//     arr[i] = newarr[i];
+//   }
+//   return arr;
+// }
+// console.log(rotatej(7, 3, [1, 2, 3, 4, 5, 6, 7]));
+
+// Approach2
+
+// function rotatej(n, k, arr) {
+//   function Reverse(start, end) {
+//     while (start < end) {
+//       let temp = arr[start];
+//       arr[start] = arr[end];
+//       arr[end] = temp;
+//       start++;
+//       end--;
+//     }
+//   }
+//   k = k % n;
+
+//   Reverse(0, n - 1);
+//   Reverse(0, k - 1);
+//   Reverse(k, n - 1);
+//   return arr;
+// }
+
+// console.log(rotatej(7, 3, [1, 2, 3, 4, 5, 6, 7]));
+
+// 76.>>Diagonal Sum
+// function primarysum(mat) {
+//     let n = mat.length;
+//     let ans = 0;
+//     let row = 0,
+//       col = 0;
+//     while (row < n) {
+//       ans += mat[row][col];
+//       row++;
+//       col++;
+//     }
+//     return ans;
+//   }
+//   function secondarysum(mat) {
+//     let n = mat.length;
+//     let ans = 0;
+//     let row = 0;
+//     let col = n - 1;
+//     while (row < n) {
+//       if (row !== col) {
+//         ans += mat[row][col];
+//       }
+//       row++;
+//       col--;
+//     }
+//     return ans;
+//   }
+
+//   function diagonalSumII(mat) {
+//       let ans = 0;
+//     let sum = primarysum(mat);
+//     ans += sum;
+//     let sum2 = secondarysum(mat);
+//     ans += sum2;
+//     return ans;
+
+//   }
+
+// 77.>>*****very imp******Break knowledge*****
+// function findbreak(arr) {
+//   let i = 0;
+//   n = arr.length;
+//   while (i < n) {
+//     if (arr[i] === 2) {
+//       break;
+//     }
+
+//     i++;
+//   }
+//   let j = n - 1;
+//   while (j >= 0) {
+//     if (arr[j] === 1) {
+//       break;
+//     }
+//     j--;
+//   }
+//   console.log(arr[i], arr[j])
+//   let tem = arr[i] + arr[j];
+//   return tem;
+// }
+// console.log(findbreak([1, 2, 3]));
+
+// 78.>>
+// function mergeOverlap(n, intervals) {
+//   intervals.sort((a, b) => a[0] - b[0]);
+//   let newarr = [];
+//   let startA = intervals[0][0];
+//   let endA = intervals[0][1];
+//   for (let i = 1; i < intervals.length; i++) {
+//     let startB = intervals[i][0];
+//     let endB = intervals[i][1];
+//     if (startB <= endA) {
+//       endA = Math.max(endB, endA);
+//     } else {
+//       newarr.push([startA, startB]);
+//       startA = startB;
+//       endA = endB;
+//     }
+//   }
+//   newarr.push([startA, endA]);
+//   return newarr;
+// }
+// console.log(
+//   mergeOverlap(4, [
+//     [1, 10],
+//     [5, 15],
+//     [6, 12],
+//     [15, 20],
+//   ])
+// );
+
+// 79.>>Wiggle Sort
+// function WiggleSort(arr) {
+//   let n = arr.length;
+//   for (let i = 1; i <= n - 1; i += 2) {
+//     if (i - 1 > 0 && arr[i] < arr[i - 1]) {
+//       [arr[i - 1], arr[i]] = [arr[i], arr[i - 1]];
+//     }
+//     if (i + 1 < n && arr[i] < arr[i + 1]) {
+//       [arr[i + 1], arr[i]] = [arr[i], arr[i + 1]];
+//     }
+//   }
+//   return arr;
+// }
+
+// console.log(WiggleSort([20, 40, 10, 20, 70, 60, 50, 80, 25, 15, 35]));
+
+// 80.>>Minimum difference
+
+// function MinDiff(arr) {
+//   let n = arr.length;
+//   arr.sort((a, b) => {
+//     a - b;
+//   });
+//   let ans = Infinity;
+//   for (let i = 0; i < n - 1; i++) {
+//     ans = Math.min(ans, arr[i + 1] - arr[i]);
+//   }
+//   return ans;
+// }
+// console.log(MinDiff([10, 50, 25, 59, 58]));
+// console.log(MinDiff([1,2,4]));
+
+// 81.>>Sort Array
+// function sortArray(arr) {
+//   let n = arr.length;
+//   arr.sort((a, b) => Math.abs(a) - Math.abs(b));
+//   return arr;
+// }
+// console.log(sortArray([2, -5, 1, -2, 4]));
+
+// 82.>> Quick sort
+// function partition(arr, left, right, pivot) {
+//   let i = left,
+//     j = left;
+
+//   while (j <= right) {
+//     if (arr[j] <= pivot) {
+//       let temp = arr[i];
+//       arr[i] = arr[j];
+//       arr[j] = temp;
+//       i++;
+//       j++;
+//     } else {
+//       j++;
+//     }
+//   }
+//   return i - 1;
+// }
+// function sorting(arr, left, right) {
+//   if (left >= right) {
+//     return;
+//   }
+//   let pivot = partition(arr, left, right, arr[right]);
+//   sorting(arr, left, pivot - 1);
+//   sorting(arr, pivot + 1, right);
+// }
+// function quickSort(n, arr) {
+//   sorting(arr, 0, arr.length - 1);
+//   return arr;
+// }
+
+// console.log(quickSort(6, [5, 4, 3, 1, 2, 5]));
+
+// 83.>>Permutation
+
+// function findpermutation(arr, result, curr, s) {
+//   if (curr.length === arr.length) {
+//     result.push(curr.slice());
+//     return;
+//   }
+
+//   for (let i = 0; i < arr.length; i++) {
+//     if (!s.has(arr[i])) {
+//       curr.push(arr[i]);
+//       s.add(arr[i]);
+//       findpermutation(arr, result, curr, s);
+//       curr.pop();
+//       s.delete(arr[i]);
+//     }
+//   }
+// }
+
+// function permutation(arr) {
+//   let result = [];
+//   let curr = [];
+//   let s = new Set();
+//   findpermutation(arr, result, curr, s);
+//   return result;
+// }
+// console.log(permutation([1, 2, 3, 4]));
+
+// ******without set****
+
+// function findpermutation(arr, result, curr) {
+//     if (curr.length === arr.length) {
+//       result.push(curr.slice());
+//       return;
+//     }
+
+//     for (let i = 0; i < arr.length; i++) {
+//       if (!curr.includes(arr[i])) {
+//         curr.push(arr[i]);
+
+//         findpermutation(arr, result, curr);
+//         curr.pop();
+
+//       }
+//     }
+//   }
+
+//   function permutation(arr) {
+//     let result = [];
+//     let curr = [];
+
+// findpermutation(arr, result, curr);
+//     return result;
+//   }
+//   console.log(permutation([1, 2, 3, 4]));
+
+//note: here we have to make 2 function and do because it will show stack exceede if
+//we do in same as result and curr shall come from outsie the find permutation function and
+//values to be stored outside;
+
+// 84.>>Three sum
+// function threeSum(arr) {
+//   let result = [];
+//   arr.sort((a, b) => a - b);
+
+//   for (let i = 0; i < arr.length - 2; i++) {
+//     let target = 0;
+//     let a = arr[i];
+//     let target1 = target - a;
+//     let left = i + 1;
+//     let right = arr.length - 1;
+//     while (left < right) {
+//       if (arr[left] + arr[right] > target1) {
+//         right--;
+//       } else if (arr[left] + arr[right] < target1) {
+//         left++;
+//       } else {
+//         let triplet = [a, arr[left], arr[right]];
+//         result.push(triplet);
+//         while (left < right && arr[left] == triplet[1]) left++;
+//         while (left < right && arr[right] == triplet[2]) right--;
+//       }
+//     }
+//     while (i + 1 < arr.length && arr[i + 1] == arr[i]) i++;
+//     //this while loop is outer and checks if the arr[i] is same as arr[ i+1]
+//   }
+//   return result;
+// }
+
+// console.log(threeSum([-1, 0, 1, 2, -1, -4]));
