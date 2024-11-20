@@ -2129,3 +2129,67 @@ const { set } = require("mongoose");
 // }
 
 // console.log(threeSum([-1, 0, 1, 2, -1, -4]));
+
+// function minRooms(meetings) {
+//     const list = [];
+//     for (let meeting of meetings) {
+//       list.push({ timestamp: meeting[0], RoomChange: +1 });
+//       list.push({ timestamp: meeting[1], RoomChange: -1 });
+//     }
+//     list.sort((a, b) => a.timestamp - b.timestamp);
+//     console.log(list);
+//     let minrooms = 0;
+//     let meetinginprogresss = 0;
+//     for (let p of list) {
+//       meetinginprogresss += p.RoomChange;
+//       minrooms = Math.max(minrooms, meetinginprogresss);
+//     }
+//     return minrooms;
+//   }
+//   console.log(
+//     minRooms([
+//       [0, 20],
+//       [5, 10],
+//       [10, 15],
+//     ])
+//   );
+
+// 85.>>Increment
+//Increment a number represented by an arrays A and return the resulting sum in Array.
+// function Increment(arr) {
+//   let n = arr.length;
+
+//   let res = [];
+
+//   for (let i = n - 1; i >= 0; i--) {
+//     let carry = 1;
+//     let d = arr[i];
+//     let sum = d + carry;
+//     res.push(sum % 10);
+//     carry = Math.floor(sum / 10);
+//   }
+//   return res.reverse();
+// }
+// console.log(Increment([1, 9, 9]));
+
+// 86.>>>Armstrong Number
+// For a given 3 digit number, find whether it is an armstrong number or not. An Armstrong number of three
+// digits is an integer such that the sum
+//  of the cubes of its digits is equal to the number itself. Return true if it is an armstrong number else return false.
+
+// function Armstrong(num){
+//     let original = num;
+//     let digit1 = num%10;
+//     let number = Math.floor(num/10)
+//     let digit2 = number%10;
+//     number = Math.floor(number/10);
+//     let digit3 = number
+//     let sum = Math.pow(digit1, 3)+ Math.pow(digit2, 3) + Math.pow(digit3, 3)
+//     if(original===sum){
+//         return true
+//     }else{
+//         return false
+//     }
+
+// }
+// console.log(Armstrong(154))
