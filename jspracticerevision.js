@@ -2193,3 +2193,46 @@ const { set } = require("mongoose");
 
 // }
 // console.log(Armstrong(154))
+
+// 87.>>
+// Search in Rotated sorted Array
+
+// function binary(arr,left,right,key){
+//     if(right<left){
+//         return -1;
+//     }
+//     let mid=Math.floor((left+right)/2);
+//     if(key==arr[mid])
+//     return mid;
+//     if(key>arr[mid])
+//     return binary(arr,(mid+1),right,key);
+//     return binary(arr,left,(mid-1),key);
+
+// }
+// function findpivot(arr,low,high){
+//     if(high<low)
+//     return -1;
+//     if(high==low)
+//     return low;
+//     let mid=Math.floor((low+high)/2);
+//     if(mid<high && arr[mid]>arr[mid+1])
+//     return mid;
+//     if(mid>low && arr[mid]<arr[mid-1])
+//     return mid-1;
+//     if(arr[low]>=arr[mid])
+//     return findpivot(arr,low,mid-1);
+//     return findpivot(arr,mid+1,high);
+
+// }
+// function search(nums, target) {
+//     let n=nums.length;
+//     let pivot=findpivot(nums,0,nums.length-1);
+//     if(pivot==-1)
+//     return binary(nums,0,nums.length-1,target);
+//     if(nums[pivot]==target)
+//     return pivot;
+//     if(nums[0]<=target)
+//     return binary(nums,0,pivot-1,target);
+//     return binary(nums,pivot+1,n-1,target);
+// }
+// console.log(search([4, 5, 6, 9, 10, 2, 3]), 3);
