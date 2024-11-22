@@ -2236,3 +2236,37 @@ const { set } = require("mongoose");
 //     return binary(nums,pivot+1,n-1,target);
 // }
 // console.log(search([4, 5, 6, 9, 10, 2, 3]), 3);
+
+// 88.>>Book reading
+
+// function isMidValid(speed, giventime, arr) {
+//   let timetaken = 0;
+//   for (let i = 0; i < arr.length; i++) {
+//     timetaken = timetaken + Math.ceil(arr[i] / speed);
+//   }
+//   if (timetaken <= giventime) {
+//     return true;
+//   } else {
+//     return false;
+//   }
+// }
+
+// function BookReading(n, h, arr) {
+//   let l = 0,
+//     r = 0;
+//   for (let i = 0; i < n; i++) {
+//     r = Math.max(arr[i], r);
+//   }
+//   let ans;
+//   while (l <= r) {
+//     let mid = Math.floor((l + r) / 2);
+//     if (isMidValid(mid, h, arr)) {
+//       ans = mid;
+//       r = mid - 1; //decrease speed
+//     } else {
+//       l = mid + 1; //increase speed
+//     }
+//   }
+//   return ans;
+// }
+// console.log(BookReading(4, 8, [3, 6, 7, 11]));
