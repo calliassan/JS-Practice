@@ -2197,45 +2197,47 @@ const { set } = require("mongoose");
 // 87.>>
 // Search in Rotated sorted Array
 
-// function binary(arr,left,right,key){
-//     if(right<left){
-//         return -1;
+// function findpivot(arr) {
+//     let ans = 0;
+//     let n = arr.length - 1;
+//     let left = 0,
+//       right = n - 1;
+//     while (left < right) {
+//       let mid = Math.floor((left + right) / 2);
+//       if (arr[mid] > arr[0]) {
+//         ans = mid;
+//         left = mid + 1;
+//       } else if (arr[mid] < arr[0]) {
+//         right = mid - 1;
+//       }
 //     }
-//     let mid=Math.floor((left+right)/2);
-//     if(key==arr[mid])
-//     return mid;
-//     if(key>arr[mid])
-//     return binary(arr,(mid+1),right,key);
-//     return binary(arr,left,(mid-1),key);
-
-// }
-// function findpivot(arr,low,high){
-//     if(high<low)
+//     return ans;
+//   }
+  
+//   function searchsorted(arr, left, right, target) {
+//     while (left < right) {
+//       let mid = Math.floor((left + right) / 2);
+//       if (arr[mid] == target) {
+//         return mid;
+//       } else if (arr[mid] > target) {
+//         right = mid - 1;
+//       } else {
+//         left = mid + 1;
+//       }
+//     }
 //     return -1;
-//     if(high==low)
-//     return low;
-//     let mid=Math.floor((low+high)/2);
-//     if(mid<high && arr[mid]>arr[mid+1])
-//     return mid;
-//     if(mid>low && arr[mid]<arr[mid-1])
-//     return mid-1;
-//     if(arr[low]>=arr[mid])
-//     return findpivot(arr,low,mid-1);
-//     return findpivot(arr,mid+1,high);
+//   }
+  
+//   function search(arr, target) {
+//     let pivot = findpivot(arr);
+//     let ans = searchsorted(arr, 0, pivot, target);
+//     if (ans !== -1) {
+//       return ans;
+//     }
+//     return searchsorted(arr, pivot + 1, arr.length - 1, target);
+//   }
+//   console.log(search([4, 5, 6, 9, 2, 3], 2));
 
-// }
-// function search(nums, target) {
-//     let n=nums.length;
-//     let pivot=findpivot(nums,0,nums.length-1);
-//     if(pivot==-1)
-//     return binary(nums,0,nums.length-1,target);
-//     if(nums[pivot]==target)
-//     return pivot;
-//     if(nums[0]<=target)
-//     return binary(nums,0,pivot-1,target);
-//     return binary(nums,pivot+1,n-1,target);
-// }
-// console.log(search([4, 5, 6, 9, 10, 2, 3]), 3);
 
 // 88.>>Book reading
 
@@ -2270,3 +2272,39 @@ const { set } = require("mongoose");
 //   return ans;
 // }
 // console.log(BookReading(4, 8, [3, 6, 7, 11]));
+// **********
+//tc for bruteforce = O(max*n) where max = maximum speed and n is for looping sothat we can divide the number by speed and get hours
+//TC for optimization = O(logmax * n) where logmax is due to binary search and n because of looping to find hour
+
+// 89.>>>Find the peak element in the given Array
+// function peakElement(N, nums) {
+//   let left = 0,
+//     right = N - 1;
+
+//   while (left <= right) {
+//     let leftvalue = -Infinity;
+//     let rightvalue = Infinity;
+//     let mid = Math.floor((left + right) / 2);
+//     if (mid === 0) {
+//       leftvalue = -Infinity;
+//     } else {
+//       leftvalue = nums[mid - 1];
+//     }
+//     if (mid === N - 1) {
+//       rightvalue = -Infinity;
+//     } else {
+//       rightvalue = nums[mid + 1];
+//     }
+//     if (nums[mid] > leftvalue && nums[mid] > rightvalue) {
+//       return mid;
+//     } else if (leftvalue > nums[mid]) {
+//       right = mid - 1;
+//     } else {
+//       left = mid + 1;
+//     }
+//   }
+//   return 0;
+// }
+// console.log(peakElement(8, [20, 30, 50, 40, 10, 60, 70, 35]));
+
+
