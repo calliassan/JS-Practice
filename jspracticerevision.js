@@ -2213,7 +2213,7 @@ const { set } = require("mongoose");
 //     }
 //     return ans;
 //   }
-  
+
 //   function searchsorted(arr, left, right, target) {
 //     while (left < right) {
 //       let mid = Math.floor((left + right) / 2);
@@ -2227,7 +2227,7 @@ const { set } = require("mongoose");
 //     }
 //     return -1;
 //   }
-  
+
 //   function search(arr, target) {
 //     let pivot = findpivot(arr);
 //     let ans = searchsorted(arr, 0, pivot, target);
@@ -2237,7 +2237,6 @@ const { set } = require("mongoose");
 //     return searchsorted(arr, pivot + 1, arr.length - 1, target);
 //   }
 //   console.log(search([4, 5, 6, 9, 2, 3], 2));
-
 
 // 88.>>Book reading
 
@@ -2307,4 +2306,51 @@ const { set } = require("mongoose");
 // }
 // console.log(peakElement(8, [20, 30, 50, 40, 10, 60, 70, 35]));
 
+// 90.>>Count occurances of an integer
 
+// function firstoccurance(n, arr, target) {
+//   let left = 0,
+//     right = n - 1;
+//   while (left < right) {
+//     let mid = Math.floor((left + right) / 2);
+//     if (arr[mid] === target) {
+//       right = mid - 1;
+//     } else if (arr[mid] < target) {
+//       left = mid + 1;
+//     } else {
+//       right = mid - 1;
+//     }
+//   }
+//   return left;
+// }
+// console.log(firstoccurance(5, [-1, 2, 2, 4, 7], 2));
+
+// function lastoccurance(n, arr, target) {
+//   let left = 0,
+//     right = n - 1;
+//   while (left < right) {
+//     let mid = Math.floor((left + right) / 2);
+//     if (arr[mid] === target) {
+//       left = mid + 1;
+//     } else if (arr[mid] < target) {
+//       left = mid + 1;
+//     } else {
+//       right = mid - 1;
+//     }
+//   }
+//   return right;
+// }
+
+// console.log(lastoccurance(5, [-1, 2, 2, 4, 7], 2));
+
+// function countoccurances(n, arr, target) {
+//   let first = firstoccurance(n, arr, target);
+//   let last = lastoccurance(n, arr, target);
+//   if (first > last) {
+//     return 0;
+//   } else {
+//     return last - first + 1;
+//   }
+// }
+// console.log(countoccurances(5, [-1, 2, 2, 4, 7], 2));
+// console.log(countoccurances(9, [10, 20, 30, 40,40,40, 40, 60, 60], 40));
