@@ -1121,12 +1121,12 @@
 
 // console.log(suffixSum[2] - suffixSum[5]);
 
-var str = "Crio.do";
-let str1 = "Ashish is learning from";
-console.log(str);
+// var str = "Crio.do";
+// let str1 = "Ashish is learning from";
+// console.log(str);
 
-var str = str1.concat(str);
-console.log(str);
+// var str = str1.concat(str);
+// console.log(str);
 
 // ***********Prime or not***********
 
@@ -1147,3 +1147,56 @@ console.log(str);
 //   }
 // }
 // console.log(checkForPrime(9));
+
+// **********************************************
+// const fakepromise = (timer, id) => {
+//   return new Promise((res, rej) => {
+//     setTimeout(() => {
+//       if (id === 3) {
+//         res(`Hello Promise ${id}`);
+//       } else {
+//         rej(`Hello promise ${id}`);
+//       }
+//     }, timer);
+//   });
+// };
+
+// const api1 = fakepromise(1000, 1);
+// const api2 = fakepromise(2000, 2);
+// const api3 = fakepromise(3000, 3);
+// const api4 = fakepromise(4000, 4);
+
+// // Promise.all([api1, api2, api3])
+// //   .then((res) => console.log(res))
+// //   .catch((err) => console.error(err));
+
+// Promise.allSettled([api1, api2, api3])
+//   .then((res) => console.log(res))
+//   .catch((err) => console.error(err));
+
+const fakepromise = (timer, id) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (id === 1) {
+        resolve("Hello resolved");
+      } else {
+        reject("hey sorry, rejected");
+      }
+    }, timer);
+  });
+};
+let promise1 = fakepromise(1000, 1);
+let promise2 = fakepromise(2000, 2);
+let promise3 = fakepromise(3000, 3);
+
+// Promise.all([promise1, promise2, promise3])
+//   .then((response) => console.log(response))
+//   .catch((err) => console.error(err));
+
+// Promise.allSettled([promise1, promise2, promise3])
+//   .then((response) => console.log(response))
+//   .catch((err) => console.error(err));
+
+Promise.any([promise1, promise2, promise3])
+  .then((response) => console.log(response))
+  .catch((err) => console.error(err));

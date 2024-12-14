@@ -2207,7 +2207,7 @@ const { set } = require("mongoose");
 //       if (arr[mid] > arr[0]) {
 //         ans = mid;
 //         left = mid + 1;
-//       } else if (arr[mid] < arr[0]) {
+//       } else if (arr[mi  d] < arr[0]) {
 //         right = mid - 1;
 //       }
 //     }
@@ -2354,3 +2354,262 @@ const { set } = require("mongoose");
 // }
 // console.log(countoccurances(5, [-1, 2, 2, 4, 7], 2));
 // console.log(countoccurances(9, [10, 20, 30, 40,40,40, 40, 60, 60], 40));
+
+// 91 >>>Find how many food packets each citizen received
+//   function fooddistribute(n, k, arr) {
+//     let newarr = [];
+//     for (let i = 0; i < n; i++) {
+//       arr.sort((a, b) => a - b);
+//     }
+//     console.log(arr);
+//     let completedistrubute = Math.floor(k / n);
+
+//     let remaining = k % n;
+//     let map = new Map();
+//     for (let i = 0; i < n; i++) {
+//       map.set(arr[i], completedistrubute);
+//     }
+//     for (let i = 0; i < remaining; i++) {
+//       map.set(arr[i], map.get(arr[i]) + 1);
+//     }
+//     return map;
+//   };
+// console.log(fooddistribute(5, 18, [1, 5, 3, 6, 8]));
+
+// 92.>>Find the updated length of the given passsword
+// function lengthofpassword(s) {
+//   let n = s.length;
+//   let arr = [];
+//   for (let char of s) {
+//     if (n === 0 || arr[arr.length - 1] !== char) {
+//       arr.push(char);
+//     }
+//   }
+//   return arr.length;
+// }
+// console.log(lengthofpassword("aabbccccd"));
+
+// 93.>>Find Peak
+
+// function findpeak(arr) {
+//   let n = arr.length;
+//   let left = 0;
+//   let right = n - 1;
+
+//   while (left <= right) {
+//     let mid = Math.floor((left + right) / 2);
+//     let leftvalue = Number.MIN_SAFE_INTEGER;
+//     let rightvalue = Number.MAX_SAFE_INTEGER;
+//     if (arr[0] > arr[1]) {
+//       return arr[0];
+//     }
+//     if (arr[n - 1] > arr[n - 2]) {
+//       return arr[n - 1];
+//     }
+//     if (arr[mid] > arr[mid - 1] && arr[mid] > arr[mid + 1]) {
+//       return arr[mid];
+//     } else if (arr[mid] < arr[mid - 1]) {
+//       right = mid - 1;
+//     } else {
+//       left = mid + 1;
+//     }
+//   }
+//   return 0;
+// }
+// console.log(findpeak([10, 20, 40, 50, 30, 20, 40, 10, 5]));
+// console.log(findpeak([10, 20, 40, 50, 60, 70, 80, 90, 100]));
+
+// 94.>>>Find all anagrams
+
+// function findAllAnagramsInAString(str, p) {
+//   const ans = [];
+//   const pmap = new Map();
+//   const smap = new Map();
+
+//   // Build character count map for string 'p'
+//   for (let char of p) {
+//     pmap.set(char, (pmap.get(char) || 0) + 1);
+//   }
+
+//   // Sliding window approach
+//   for (let i = 0; i < str.length; i++) {
+//     const char = str[i];
+
+//     // Build character count map for current window in 'str'
+//     smap.set(char, (smap.get(char) || 0) + 1);
+
+//     // Check if current window is an anagram of 'p'
+//     if (comparemap(smap, pmap)) {
+//       ans.push(i - p.length + 1); // Add starting index of the anagram
+//     }
+
+//     // Slide the window
+//     if (i >= p.length - 1) {
+//       const charToRemove = str[i - p.length + 1];
+//       smap.set(charToRemove, smap.get(charToRemove) - 1);
+//       if (smap.get(charToRemove) === 0) {
+//         smap.delete(charToRemove);
+//       }
+//     }
+//   }
+
+//   return ans;
+// }
+
+// function comparemap(map1, map2) {
+//   if (map1.size !== map2.size) return false;
+//   for (const [key, value] of map1.entries()) {
+//     if (map2.get(key) !== value) return false;
+//   }
+//   return true;
+// }
+
+// console.log(findAllAnagramsInAString("bacdgabcda", "abcd"));
+
+// 95.>>search target in 2d matrix
+
+// function searchA2DMatrix(matrix, target) {
+//   let m = matrix[0].length - 1;
+//   let n = matrix.length;
+//   let r = 0,
+//     c = n - 1;
+//   console.log(c, r);
+//   while (c > 0 && r < n) {
+//     if (matrix[r][c] > target) {
+//       c--;
+//     }else if(matrix[r][c]<target){
+//       r++;
+//     }
+//     else return true
+//   }
+//   return false;
+
+// }
+// console.log(
+//   searchA2DMatrix(
+//     [
+//       [1, 2, 3, 4],
+//       [2, 4, 5, 6],
+//       [4, 5, 7, 8],
+//     ],
+//     10
+//   )
+// );
+
+// 96.>>
+
+// function findpivot(arr) {
+//     let ans = 0;
+//     let n = arr.length - 1;
+//     let left = 0,
+//       right = n - 1;
+//     while (left < right) {
+//       let mid = Math.floor((left + right) / 2);
+//       if (arr[mid] > arr[0]) {
+//         ans = mid;
+//         left = mid + 1;
+//       } else if (arr[mi  d] < arr[0]) {
+//         right = mid - 1;
+//       }
+//     }
+//     return ans;
+//   }
+
+//   function searchsorted(arr, left, right, target) {
+//     while (left < right) {
+//       let mid = Math.floor((left + right) / 2);
+//       if (arr[mid] == target) {
+//         return mid;
+//       } else if (arr[mid] > target) {
+//         right = mid - 1;
+//       } else {
+//         left = mid + 1;
+//       }
+//     }
+//     return -1;
+//   }
+
+//   function search(arr, target) {
+//     let pivot = findpivot(arr);
+//     let ans = searchsorted(arr, 0, pivot, target);
+//     if (ans !== -1) {
+//       return ans;
+//     }
+//     return searchsorted(arr, pivot + 1, arr.length - 1, target);
+//   }
+//   console.log(search([4, 5, 6, 9, 2, 3], 2));
+
+// const arr = [1, 2, [3, 4, [5, 6]]];
+// const flatArr = arr.flat(2);
+// console.log(flatArr)
+// var obj = { a: 1, b: 2 };
+// var objCopy = obj;
+// objCopy.a = 5;
+// console.log(obj.a);
+
+// 97.>>find the longest common prefix
+// function longestprefix(arr) {
+//   if (arr.length === 0) {
+//     return "";
+//   }
+//   let prefix = arr[0];
+//   for (let i = 1; i < arr.length; i++) {
+//     //inner while loop runs for each value of i
+//     while(arr[i].indexOf(prefix)!==0){//this statements check for if it returns -1, that means doesnot exist as pet indexof;
+//         prefix = prefix.slice(0, prefix.length-1);
+//         if(prefix===""){
+//             return ""
+
+//         }
+//     }
+
+//   }
+//   return prefix;
+// }
+
+// console.log(longestprefix(["flower", "flo", "flows"]));
+// ***********************************************************************
+// concept for above
+// let prefix = "flower";
+// let word = "flow";
+// console.log(word.indexOf(prefix));//returns -1
+// **********************************************************************
+
+// 98.>>>
+// function firstLonesuperstar(arr) {
+//   let map = new Map();
+//   for (let i = 0; i < arr.length; i++) {
+//     map.set(arr[i], (map.get(arr[i]) || 0) + 1);
+//   }
+//   console.log(map);
+//   for (let [key, value] of map) {
+//     if (value === 1) {
+//       return key;
+//     }
+//   }
+// }
+// console.log(firstLonesuperstar([9, 6, 9, 7, 6]));
+
+// 99.>>Intersection of two Arrays
+// function intersectionOfTwoArrays(nums1, nums2) {
+//   let arr = [];
+//   let set1 = new Set();
+//   let set2 = new Set();
+//   for (let i = 0; i < nums1.length; i++) {
+//     set1.add(nums1[i]);
+//   }
+//   for (let i = 0; i < nums2.length; i++) {
+//     set2.add(nums2[i]);
+//   }
+//   for (let key of set1) {
+//     console.log(key);
+//     if (set2.has(key)) {
+//       arr.push(key);
+//     }
+//   }
+//   console.log(set1);
+//   console.log(set2);
+//   return arr;
+// }
+// console.log(intersectionOfTwoArrays([1, 2, 2, 1], [2, 2]));
+
