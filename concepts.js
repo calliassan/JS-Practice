@@ -38,3 +38,60 @@
 // deepcopy.c.ac = 100;
 // deepcopy.d=1000;
 // console.log(original)
+
+// *******************************Promise***************************************************
+
+//callback hell example
+// createorder(cart, function (orderid) {
+//   proceedopayment(orderid, function (paymentinfo) {
+//     showordersummary(paymentinfo, function (paymentinfo) {
+//       updatewalletbalence(paymentinfo);
+//     });
+//   });
+// });
+
+// //how to remove the above inversion of control issue
+// //below is the promise chaining
+// createorder(cart).then(function (orderid) {
+//   return proceedopayment(orderid).then(function (paymentinfo) {
+//     return showordersummary(paymentinfo).then(function (paymentinfo) {
+//       return updatewalletbalence(paymentinfo);
+//     });
+//   });
+// });
+
+// *********************************Promise construction*********************************************
+
+//in above example, createorder(cart) is a promise we called, now how to create the promise?
+
+// const cart = ["shoes", "pants", "Kurtha"];
+// const promise = createOrder(cart);
+// promise
+//   .then(function (orderid) {
+//     console.log(orderid);
+//     // proceedtopayment();
+//   })
+//   .catch(function (err) {
+//     console.log(err.message);
+//   });
+
+// ///now, producing promise / creation of promise
+
+// function validatecart(cart) {
+//   return false; //change this to false to see error and vice versa
+// }
+// function createOrder(cart) {
+//   const pr = new Promise(function (resolve, reject) {
+//     if (!validatecart(cart)) {
+//       const err = new Error("cart is not valid");
+//       reject(err);
+//     }
+//     const orderid = "123"; //getiing the order id by calling or how so ever
+//     if (orderid) {
+//       setTimeout(() => {
+//         resolve(orderid);
+//       }, 5000);
+//     }
+//   });
+//   return pr;
+// }

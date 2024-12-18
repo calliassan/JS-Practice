@@ -2612,4 +2612,3 @@ const { set } = require("mongoose");
 //   return arr;
 // }
 // console.log(intersectionOfTwoArrays([1, 2, 2, 1], [2, 2]));
-
