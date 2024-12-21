@@ -10,8 +10,6 @@
 //   }
 // }
 
-const { set } = require("mongoose");
-
 // 2.// console.log(findQuadrant(-2, -4));
 
 // function naturalNumbers(N) {
@@ -499,7 +497,8 @@ const { set } = require("mongoose");
 // }
 // console.log(patternPrintingI(5));
 
-// 27.>>Reverse words in a arr
+// 27.>>
+// Reverse words in a arr
 
 // function reverseWords(sentense) {
 //   let arr = sentense.trim().split(" ");
@@ -566,6 +565,7 @@ const { set } = require("mongoose");
 //   return reversedarr.join(" ")
 // }
 // console.log(ReverseLetters("abc def ghi"));
+///Note: here use spliy always and dont try iterate over string directly coz wont give desired result:
 
 // 30.>>>max Product
 //Given the array of integers arr of size n, you will choose two different indices i and j of that array.
@@ -2591,24 +2591,84 @@ const { set } = require("mongoose");
 // console.log(firstLonesuperstar([9, 6, 9, 7, 6]));
 
 // 99.>>Intersection of two Arrays
-// function intersectionOfTwoArrays(nums1, nums2) {
-//   let arr = [];
-//   let set1 = new Set();
-//   let set2 = new Set();
-//   for (let i = 0; i < nums1.length; i++) {
-//     set1.add(nums1[i]);
+
+///Approach1:Intersection
+// function intersection(arr1, arr2){
+//     let arr =[];
+//     arr1.forEach((item)=>{
+//         if(arr2.includes(item)){
+//             arr.push(item)
+//         }
+//     })
+//     return arr
+
+// }
+// console.log(intersection([1,2,2,1], [2,2]))
+
+//Approach2:using Map;
+
+// function intersectionOfTwoArrays(arr1, arr2) {
+//     const map1 = new Map();
+
+//     const newarr = [];
+//     for (let i = 0; i < arr1.length; i++) {
+//       map1.set(arr1[i], (map1.get(arr1[i]) || 0) + 1);
+//     }
+
+//     for (let i = 0; i < arr2.length; i++) {
+//       if (map1.has(arr2[i])) {
+//         let count = map1.get(arr2[i]);
+//         if (count > 0) {
+//           newarr.push(arr2[i]);
+//           map1.set(map1.get(arr2[i]), count - 1);
+//         }
+//       }
+//     }
+//     return newarr.sort((a, b) => a - b);
 //   }
-//   for (let i = 0; i < nums2.length; i++) {
-//     set2.add(nums2[i]);
+//   console.log(intersectionOfTwoArrays([1, 2, 2, 1], [2, 2]));
+
+// // 100.>>>Max repeating word
+// function maxrepeat(arr) {
+//   const map = new Map();
+//   for (let word of arr) {
+//     map.set(word, (map.get(word) || 0) + 1);
 //   }
-//   for (let key of set1) {
-//     console.log(key);
-//     if (set2.has(key)) {
-//       arr.push(key);
+//   let max = -1;
+//   let maxkey = "";
+//   for (let [key, value] of map) {
+//     if (value > max) {
+//       max = Math.max(max, value);
+//       maxkey = key;
 //     }
 //   }
-//   console.log(set1);
-//   console.log(set2);
-//   return arr;
+//   return maxkey;
 // }
-// console.log(intersectionOfTwoArrays([1, 2, 2, 1], [2, 2]));
+// console.log(maxrepeat(["hello", "world", "crio", "crio", "hello", "hello"]));
+
+// 101.>>Most frequent
+
+// function mostFrequent(str) {
+//   let map = new Map();
+//   let arr = [];
+//   for (let char of str) {
+//     console.log(char);
+//     map.set(char, (map.get(char) || 0) + 1);
+//   }
+//   console.log(map);
+//   let max = -1;
+//   let maxkey = -1;
+//   for (let [key, value] of map) {
+//     if (value > max) {
+//       max = Math.max(max, value);
+//       maxkey = key;
+//     }
+//   }
+//   return [maxkey, max];
+// }
+// console.log(mostFrequent("statements are unique"));
+
+//
+
+const num = 123;
+console.log([...num]);

@@ -60,6 +60,14 @@
 //   });
 // });
 
+// eg>>>
+// const API = "https://jsonplaceholder.typicode.com/posts";
+// const posts = fetch(API);
+// console.log(posts);
+// posts.then(function (data) {
+//   console.log(data.json());
+// });
+
 // *********************************Promise construction*********************************************
 
 //in above example, createorder(cart) is a promise we called, now how to create the promise?
@@ -94,4 +102,65 @@
 //     }
 //   });
 //   return pr;
+// }
+
+// Promise construction
+
+// ***************************************Promise perfect example**********************
+// const cart = ["kurtha", "shoes", "tie"];
+// const promise = createcart(cart);
+// promise
+//   .then(function (orderid) {
+//     console.log(orderid);
+//     return orderid; //we return orderid here which will go down to proceedtopay;
+//   })
+//   .then(function (orderid) {
+//     //orderid passed here whoch was returned from above
+//     return proceedtopay(orderid);
+//   })
+//   .then(function (payinfo) {
+//     console.log(payinfo);
+//   })
+//   .catch(function (err) {
+//     console.log(err);
+//   });
+
+// function createcart(cart) {
+//   const pr = new Promise(function (resolve, reject) {
+//     if (!validcart) {
+//       const err = new Error("Invalid cart");
+//       reject(err);
+//     } else {
+//       const idfromdatabase = "12345";
+//       if (idfromdatabase) {
+//         setTimeout(() => {
+//           resolve(idfromdatabase);
+//         }, 5000);
+//       }
+//     }
+//   });
+//   return pr;
+// }
+
+// function proceedtopay(orderid) {
+//   //   const pr = new Promise(function (resolve, reject) {
+//   //     setTimeout(() => {
+//   //       resolve("Payment successful");
+//   //     }, 5000);
+//   //   });
+//   //   return pr;
+//   //instead of above we can also just do like;
+//   return new Promise(function (resolve, reject) {
+//     setTimeout(() => {
+//       resolve("Payment successful");
+//     }, 5000);
+//   });
+// }
+
+// function validcart(cart) {
+//   if (cart.length > 1) {
+//     return true;
+//   } else {
+//     return false;
+//   }
 // }

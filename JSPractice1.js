@@ -1174,29 +1174,31 @@
 //   .then((res) => console.log(res))
 //   .catch((err) => console.error(err));
 
-const fakepromise = (timer, id) => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (id === 1) {
-        resolve("Hello resolved");
-      } else {
-        reject("hey sorry, rejected");
-      }
-    }, timer);
-  });
-};
-let promise1 = fakepromise(1000, 1);
-let promise2 = fakepromise(2000, 2);
-let promise3 = fakepromise(3000, 3);
+// **********************************************************
 
-// Promise.all([promise1, promise2, promise3])
+// const fakepromise = (timer, id) => {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       if (id === 1) {
+//         resolve("Hello resolved");
+//       } else {
+//         reject("hey sorry, rejected");
+//       }
+//     }, timer);
+//   });
+// };
+// let promise1 = fakepromise(1000, 1);
+// let promise2 = fakepromise(2000, 2);
+// let promise3 = fakepromise(3000, 3);
+
+// // Promise.all([promise1, promise2, promise3])
+// //   .then((response) => console.log(response))
+// //   .catch((err) => console.error(err));
+
+// // Promise.allSettled([promise1, promise2, promise3])
+// //   .then((response) => console.log(response))
+// //   .catch((err) => console.error(err));
+
+// Promise.any([promise1, promise2, promise3])
 //   .then((response) => console.log(response))
 //   .catch((err) => console.error(err));
-
-// Promise.allSettled([promise1, promise2, promise3])
-//   .then((response) => console.log(response))
-//   .catch((err) => console.error(err));
-
-Promise.any([promise1, promise2, promise3])
-  .then((response) => console.log(response))
-  .catch((err) => console.error(err));
