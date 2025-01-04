@@ -905,6 +905,40 @@
 // }
 // console.log(allAnagrams("abc", ["bac", "cad", "acb"]));
 
+// 3rd way
+
+// function isanagram(str, str1) {
+//     let map1 = new Map();
+//     let map2 = new Map();
+//     for (let char of str) {
+//       console.log(char);
+//       map1.set(char, (map1.get(char) || 0) + 1);
+//     }
+
+//     for (let char of str1) {
+//       map2.set(char, (map2.get(char) || 0) + 1);
+//     }
+
+//     for (let [key] of map1) {
+//       if (!map2.has(key)) {
+//         return false;
+//       }
+//     }
+//     return true;
+//   }
+//   console.log(isanagram("abc", "cba"));
+
+//   function findallanagrams(str, array) {
+//     let newarr = [];
+//     for (let i = 0; i < array.length; i++) {
+//       if (isanagram(str, array[i])) {
+//         newarr.push(array[i]);
+//       }
+//     }
+//     return newarr;
+//   }
+//   console.log(findallanagrams("abc", ["bca", "cda", "cba"]));
+
 // 41.>>>Find Unique words
 // function uniqueWords(arr) {
 //   let newarr = [];
@@ -1070,6 +1104,26 @@
 //this all is done because of unsorted array
 // TC:(nlogn)
 // SC: O(n)
+
+// 3rd approach:
+// function unsortedsum(arr, target) {
+//   let map = new Map();
+//   let n = arr.length;
+
+//   for (let j = 0; j < n; j++) {
+
+//     let x = target - arr[j];
+//     if (map.has(x)) {
+//       let i = map.get(x);
+//       return [i, j];
+//     } else {
+//       map.set(arr[j], j);
+//     }
+//   }
+//   console.log(map);
+//   return null;
+// }
+// console.log(unsortedsum([2, 4, 9, 6, 3], 12));
 
 // 48.>>>Merge Two sorted arrays;
 // function mergeSorted(n, arr1, m, arr2) {
@@ -1296,23 +1350,25 @@
 // );
 
 // 54.>>Find the equal partition index
-// function equalPartition(arr, n) {
-//   const pre = [];
-//   let sum = 0;
-//   for (let i = 0; i < n; i++) {
-//     sum += arr[i];
-//     pre.push(sum);
-//   }
-//   for (let i = 1; i < n - 1; i++) {
-//     const isum = pre[i - 1];
-//     const jsum = pre[n - 1] - pre[i];
-//     if (isum === jsum) {
-//       return i;
+// function equalpartition(n, arr) {
+//     let prefixsum = new Array(n).fill(0);
+//     let suffixsum = new Array(n).fill(0);
+//     prefixsum[0] = arr[0];
+//     for (let i = 1; i < n; i++) {
+//       prefixsum[i] = prefixsum[i - 1] + arr[i];
 //     }
+//     suffixsum[n - 1] = arr[n - 1];
+//     for (let i = n - 2; i >= 0; i--) {
+//       suffixsum[i] = suffixsum[i + 1] + arr[i];
+//     }
+//     for (let i = 1; i < n; i++) {
+//       if (prefixsum[i - 1] === suffixsum[i + 1]) {
+//         return i;
+//       }
+//     }
+//     return -1;
 //   }
-//   return -1;
-// }
-// console.log(equalPartition([1, 4, 2, 5], 4));
+//   console.log(equalpartition(4, [1, 4, 2, 5]));
 
 // 55.>>Find maximum sum contageous {very IMp}
 // function maxSubarraySum(arr) {
@@ -1387,27 +1443,33 @@
 
 // If there is no such sub-array print -1.
 
-// function longestSubarray(arr) {
-//   let ians = -1,
-//     jans = -2;
-
-//   let sum = 0;
-//   let newmap = new Map();
-//   newmap.set(0, -1); //to handle edge case i.e if sum itself becomes zero
-//   for (let j = 0; j < arr.length; j++) {
-//     sum += arr[j];
-//     if (newmap.has(sum)) {
-//       let i = newmap.get(sum) + 1;
-//       if (j - i + 1 > jans - ians + 1) {
-//         jans = j;
-//         ians = i;
+// function largestsubarraysum0(arr) {
+//     let n = arr.length;
+//     let map = new Map();
+//     let sum = 0;
+//     map.set(0, -1); //this is done to catch the edge case where if sum ==0, then there still we have to find left and right
+//     let ansleft = -1;
+//     let ansright = -1;
+//     //they are initiated at -1 because if we put from 0, it will include first arr at index 0, so keeping outside scope
+//     for (let right = 0; right < n; right++) {
+//       sum += arr[right]; //finding the prefix sum
+//       if (map.has(sum)) {
+//         let left = map.get(sum) + 1;
+//         if (right - left + 1 > ansright - ansleft + 1) {// chacking for any other subarray larger than existing
+//           ansleft = left;
+//           ansright = right;
+//         }
+//       } else {
+//         map.set(arr[right], 0);
 //       }
-//     } else {
-//       newmap.set(sum, j);
+//       if (ansleft != -1) {
+//         return arr.slice(ansleft, ansright + 1);//for slice, upper limit shall be one up
+//       }
 //     }
+//     return -1;
 //   }
-// }
-// console.log(longestSubarray(2, 3, 1, -4, 0, 6));
+//   console.log(largestsubarraysum0([2, -2, 1, 0, 4, -2, -2]));
+//   console.log(largestsubarraysum0([2, 3, 1, -4, 0, 6]));
 
 // 59.>>
 // Maximum sum possible out of all subarrays of size k
@@ -2668,7 +2730,152 @@
 // }
 // console.log(mostFrequent("statements are unique"));
 
-//
+// 102.>>>All alphabets
+// function allAlphabet(str) {
+//   let alphabet = "abcdefghijklmnopqrstuvwxyz";
+//   for (let char of alphabet) {
+//     if (!str.includes(char)) {
+//       return false;
+//     }
+//   }
+//   return true;
+// }
+// console.log(allAlphabet("thequickbrownfoxjumpsoverthelazy"));
 
-const num = 123;
-console.log([...num]);
+// 103.>>
+// function sumeven(n) {
+//   if (n <= 0) {
+//     return 0;
+//   }
+//   if (n % 2 == 0) {
+//     return n + sumeven(n - 2);
+//   }
+
+// }
+// console.log(sumeven(10));
+
+// // 104.>>Count Prime
+// function isprime(n) {
+//   if (n == 0 || n === 1) {
+//     return;
+//   }
+//   let count = 0;
+//   for (let i = 0; i < n; i++) {
+//     if (n % i == 0) {
+//       count = count + 1;
+//     }
+//   }
+//   if (count > 1) {
+//     return false;
+//   } else {
+//     return true;
+//   }
+// }
+// console.log(isprime(10));
+// function countprime(n) {
+//   let count = 0;
+//   for (let i = 0; i < n; i++) {
+//     if (isprime(i)) {
+//       count += 1;
+//     }
+//   }
+//   return count;
+// }
+// console.log(countprime(10));
+
+// 105>>>Eudlidean Alogrithm to find GCD
+// function GCD(n1, n2){
+//     if(n2==0){
+//         return n1
+//     }
+//     return GCD(n2, n1%n2)
+// }
+// console.log(GCD(12, 36))
+
+// 106.>>GCD of Array
+// Given an array of numbers, find GCD of the array elements.
+
+// The greatest common divisor of two numbers is the largest positive integer that evenly divides both numbers.
+
+// function GCD(a, b) {
+//   if (b == 0) {
+//     return a;
+//   }
+//   return GCD(b, a % b);
+// }
+// console.log(GCD(12, 36));
+
+// function GcdofArray(arr) {
+//   let a = arr[0];
+//   let b = arr[1];
+//   let res = GCD(a, b);
+//   for (let i = 2; i < arr.length; i++) {
+//     res = GCD(res, arr[i]);
+//   }
+//   return res;
+// }
+// console.log(GcdofArray([4, 6, 8, 16]));
+
+// 107.>>
+// function reversenumber(n) {
+//   let reverse = 0;
+//   while (number > 0) {
+//     let temp = number % 10;
+//     let number = Math.floor(number / 10);
+//     reverse = reverse * 10 + temp;
+//   }
+// }
+// console.log(reversenumber(153));
+
+// 108.>>
+
+// function largestsubarraysum0(arr) {
+//   let sum = 0;
+//   let map = new Map();
+//   map.set(0, -1);
+
+//   let sumarr = [];
+//   for (let i = 0; i < arr.length; i++) {
+//     sum += arr[i];
+//     sumarr.push(sum);
+//   }
+//   let ansleft = -1;
+//   let ansright = -2;
+//   for (let i = 0; i < sumarr.length; i++) {
+//     if (map.has(sumarr[i])) {
+//       let left = map.get(sumarr[i] + 1);
+//       if (i - left + 1 > ansright - ansleft) {
+//         ansright = i;
+//         ansleft = left;
+//       }
+//     } else {
+//       map.set(sumarr[i], i);
+//     }
+//   }
+//   if (ansleft != -1) {
+//     const res = sumarr.slice(ansleft, ansright + 1);
+//     return res;
+//   }
+//   return [-1];
+// }
+// console.log(largestsubarraysum0([2, 3, 1, -4, 0, 6]));
+
+// function equalpartition(n, arr) {
+//     let prefixsum = new Array(n).fill(0);
+//     let suffixsum = new Array(n).fill(0);
+//     prefixsum[0] = arr[0];
+//     for (let i = 1; i < n; i++) {
+//       prefixsum[i] = prefixsum[i - 1] + arr[i];
+//     }
+//     suffixsum[n - 1] = arr[n - 1];
+//     for (let i = n - 2; i >= 0; i--) {
+//       suffixsum[i] = suffixsum[i + 1] + arr[i];
+//     }
+//     for (let i = 1; i < n; i++) {
+//       if (prefixsum[i - 1] === suffixsum[i + 1]) {
+//         return i;
+//       }
+//     }
+//     return -1;
+//   }
+//   console.log(equalpartition(4, [1, 4, 2, 5]));
