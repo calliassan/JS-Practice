@@ -1437,6 +1437,27 @@
 // }
 // console.log(subarray([4, 2, -2, 5]));
 
+// 2nd way>>>
+// function subarrayexists(arr) {
+//     let arr1 = new Array(arr.length).fill(0);
+//     let sum = 0;
+//     for (let i = 0; i < arr.length; i++) {
+//       sum += arr[i];
+//       arr1[i] = sum;
+//     }
+//     console.log(arr1);
+//     let set = new Set();
+//     for (let i = 0; i < arr1.length; i++) {
+//       if (set.has(0||arr1[i])) {
+//         return true;
+//       } else {
+//         set.add(arr1[i])
+//       }
+//     }
+//     return false
+//   }
+//   console.log(subarrayexists([4, -4, 0, 2]));
+
 // 58.>>Find longest subarray with sum 0
 // Given an integer array, find the largest subarray with sum 0 . If there is more than one subarray with the largest length,
 // return the subarray with the lowest starting index.
@@ -1480,6 +1501,24 @@
 // 100 200 300 400
 // Sample Output 1
 // 700
+
+// function maxsumofsizek(arr, k) {
+//     //   let n = arr.length;
+
+//   let sum = 0;
+//   for (let i = 0; i < k; i++) {
+//     sum += arr[i];
+//   }
+//   let maxsum = sum;
+//   for (let i = k; i < n; i++) {
+//     sum = sum + arr[i]-arr[i-k]
+//     maxsum = Math.max(sum, maxsum)
+//   }
+//   return maxsum;
+// }
+// console.log(maxsumofsizek([2, 6, -4, 0, 11, 3, -2], 3));
+
+// 2nd way>>>>>>
 
 // function maximumSubarraySumSizeK(N, A, K) {
 //   let i = 0,
@@ -1528,6 +1567,28 @@
 //   return ans;
 // }
 // console.log(kDistinctcharacters("Xyyzya", 3));
+
+// similarway>>
+// function longestwithmostkdistinct(str, k) {
+//     let map = new Map();
+//     let maxsum = 0;
+//     let left = 0,
+//       right = 0;
+//     while (right < str.length) {
+//       map.set(str[right], (map.get(str[right]) || 0) + 1);
+//       while (map.size > k) {
+//         map.set(str[left], map.get(str[left]) - 1);
+//         if (map.get(str[left]) === 0) {
+//           map.delete(str[left]);
+//         }
+//         left++;
+//       }
+//       maxsum = Math.max(maxsum, right - left + 1)
+//       right++
+//     }
+//     return maxsum
+//   }
+//   console.log(longestwithmostkdistinct("Xyyzya", 3));
 
 // 61.>>Find the longest substring without a repeating character
 // function longestWithoutRepeat(s) {
@@ -2860,22 +2921,31 @@
 // }
 // console.log(largestsubarraysum0([2, 3, 1, -4, 0, 6]));
 
-// function equalpartition(n, arr) {
-//     let prefixsum = new Array(n).fill(0);
-//     let suffixsum = new Array(n).fill(0);
-//     prefixsum[0] = arr[0];
-//     for (let i = 1; i < n; i++) {
-//       prefixsum[i] = prefixsum[i - 1] + arr[i];
+// function findAllsubarrays(arr) {
+//   let res = [];
+//   for (let i = 0; i < arr.length; i++) {
+//     let arrays = [];
+//     for (let j = i; j < arr.length; j++) {
+//       arrays.push(arr.slice(i, j + 1));
 //     }
-//     suffixsum[n - 1] = arr[n - 1];
-//     for (let i = n - 2; i >= 0; i--) {
-//       suffixsum[i] = suffixsum[i + 1] + arr[i];
-//     }
-//     for (let i = 1; i < n; i++) {
-//       if (prefixsum[i - 1] === suffixsum[i + 1]) {
-//         return i;
-//       }
-//     }
-//     return -1;
+//     res.push(arrays);
 //   }
-//   console.log(equalpartition(4, [1, 4, 2, 5]));
+//   return res;
+// }
+// console.log(findAllsubarrays([1, 2, 3, 4, 5]));
+
+// function maxsumofsizek(arr, k) {
+//     //   let n = arr.length;
+
+//   let sum = 0;
+//   for (let i = 0; i < k; i++) {
+//     sum += arr[i];
+//   }
+//   let maxsum = sum;
+//   for (let i = k; i < n; i++) {
+//     sum = sum + arr[i]-arr[i-k]
+//     maxsum = Math.max(sum, maxsum)
+//   }
+//   return maxsum;
+// }
+// console.log(maxsumofsizek([2, 6, -4, 0, 11, 3, -2], 3));
